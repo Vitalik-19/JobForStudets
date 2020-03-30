@@ -20,6 +20,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:tint="@color/colorAccent"
             app:srcCompat="@drawable/ic_vacancy_black_24dp" />
 
         <EditText
@@ -42,6 +43,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:tint="@color/colorAccent"
             app:srcCompat="@drawable/ic_place_black_24dp" />
 
         <EditText
