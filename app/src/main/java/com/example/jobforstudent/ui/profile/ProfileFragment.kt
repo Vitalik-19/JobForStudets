@@ -1,12 +1,15 @@
 package com.example.jobforstudent.ui.profile
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.example.jobforstudent.R
+import com.example.jobforstudent.databinding.ProfileFragmentBinding
 
 
 class ProfileFragment : Fragment() {
@@ -15,11 +18,14 @@ class ProfileFragment : Fragment() {
         fun newInstance() = ProfileFragment()
     }
 
+    private lateinit var binding: ProfileFragmentBinding
     private lateinit var viewModel: ProfileViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.profile_fragment, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false)
+        binding.profileFragmentLoginProfile.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_navigation_profile_to_loginFragment))
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

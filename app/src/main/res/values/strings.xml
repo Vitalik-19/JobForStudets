@@ -6,4 +6,9 @@
     <string name="title_search">Пошук</string>
     <string name="title_notifications">Сповіщення</string>
     <string name="title_profile">Профіль</string>
+
+    <!--share-->
+    <string name="vacancy">Вакансія</string>
+    <string name="place">Місто</string>
+    <string name="button_saerch">Шукати</string>
 </resources>

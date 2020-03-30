@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="start"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:padding="16dp"
     tools:context=".ui.search.SearchFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -17,31 +20,21 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_vacancy_black_24dp" />
+            app:srcCompat="@drawable/ic_vacancy_black_24dp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/fragment_search_edit_text_vacancy"
+            style="@style/editTextStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:hint="@string/vacancy" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Вакансія" />
-
-            <EditText
-                android:id="@+id/fragment_search_edit_text_vacancy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <ImageView
@@ -49,26 +42,33 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_place_black_24dp" />
+            app:srcCompat="@drawable/ic_place_black_24dp" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/fragment_search_edit_text_place"
+            style="@style/editTextStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:hint="@string/place" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Місто" />
-
-            <EditText
-                android:id="@+id/fragment_search_edit_text_place"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name" />
-        </LinearLayout>
     </LinearLayout>
 
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_saerch"
+        android:textAllCaps="false"
+        android:textSize="24sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:itemCount="40" />
+    </ScrollView>
 </LinearLayout>
