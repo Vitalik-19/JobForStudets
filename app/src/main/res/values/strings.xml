@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Job For Student</string>
-    <string name="title_home">Home</string>
-    <string name="title_search">Search</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_profile">Profile</string>
+
+    <!--text menu-->
+    <string name="title_favorite">Обране</string>
+    <string name="title_search">Пошук</string>
+    <string name="title_notifications">Сповіщення</string>
+    <string name="title_profile">Профіль</string>
 </resources>

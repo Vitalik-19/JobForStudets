@@ -1,4 +1,4 @@
-package com.example.jobforstudent.ui.home
+package com.example.jobforstudent.ui.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,16 +10,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.jobforstudent.R
 
-class HomeFragment : Fragment() {
+class FavoriteFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var favoriteViewModel: FavoriteViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        favoriteViewModel =
+                ViewModelProviders.of(this).get(FavoriteViewModel::class.java)
+        val root = inflater.inflate(R.layout.favorite_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
+        favoriteViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root
