@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -26,14 +28,9 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
                 setOf(R.id.navigation_search, R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_profile)
         )
-
-//        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
-//            if (nd == nc) {
-//                binding.navView.visibility = View.GONE
-//            } else {
-//                binding.navView.visibility = View.VISIBLE
-//            }
-//        }
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+            //   Toast.makeText(this, "${nd.id}, ${nd.label}, ${nd.parent},${R.layout.login_fragment}", Toast.LENGTH_LONG).show()
+        }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
