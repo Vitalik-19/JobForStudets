@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">Job For Student</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <!--text menu-->
+    <string name="title_favorite">Обране</string>
+    <string name="title_search">Пошук</string>
+    <string name="title_notifications">Сповіщення</string>
+    <string name="title_profile">Профіль</string>
+
+    <!--share-->
+    <string name="vacancy">Вакансія</string>
+    <string name="place">Місто</string>
+    <string name="button_saerch">Шукати</string>
 </resources>
