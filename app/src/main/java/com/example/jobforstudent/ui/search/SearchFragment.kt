@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jobforstudent.R
 import com.example.jobforstudent.CompanyData
-import kotlinx.android.synthetic.main.search_fragment.*
+import com.example.jobforstudent.R
+import com.example.jobforstudent.databinding.SearchFragmentBinding
 
 
 class SearchFragment : Fragment() {
@@ -22,13 +23,13 @@ class SearchFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.search_fragment, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        search_fragment_recycler_view.adapter = SearchAdapter(CompanyData().name)
-        search_fragment_recycler_view.layoutManager = LinearLayoutManager(Fragment().context)
+        val binding: SearchFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
+        binding.lifecycleOwner = this
+        binding.apply {
+            searchFragmentRecyclerView.adapter = SearchAdapter(CompanyData().name)
+            searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
