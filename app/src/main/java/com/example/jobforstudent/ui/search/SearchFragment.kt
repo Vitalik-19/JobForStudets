@@ -26,7 +26,7 @@ class SearchFragment : Fragment() {
         val binding: SearchFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
         binding.lifecycleOwner = this
         binding.apply {
-            searchFragmentRecyclerView.adapter = SearchAdapter(CompanyData().name)
+            searchFragmentRecyclerView.adapter = SearchAdapter(CompanyData())
             searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
         }
         return binding.root
