@@ -40,4 +40,13 @@
             app:destination="@id/navigation_profile"
             app:popUpTo="@id/navigation_profile" />
     </fragment>
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.example.jobforstudent.ui.work.WorkFragment"
+        android:label="work_fragment"
+        tools:layout="@layout/work_fragment" />
+    <fragment
+        android:id="@+id/editAdvertFragment"
+        android:name="com.example.jobforstudent.ui.editadvert.EditAdvertFragment"
+        android:label="EditAdvertFragment" />
 </navigation>
