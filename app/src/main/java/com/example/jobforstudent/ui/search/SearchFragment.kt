@@ -15,15 +15,14 @@ import com.example.jobforstudent.databinding.SearchFragmentBinding
 
 class SearchFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = SearchFragment()
-    }
-
     private lateinit var viewModel: SearchViewModel
+    private lateinit var binding: SearchFragmentBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
+        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+        binding.searchViewModel = viewModel
 
-        val binding: SearchFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
         binding.lifecycleOwner = this
         binding.apply {
             searchFragmentRecyclerView.adapter = SearchAdapter(CompanyData())
@@ -31,11 +30,4 @@ class SearchFragment : Fragment() {
         }
         return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

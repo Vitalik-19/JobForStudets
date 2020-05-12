@@ -26,8 +26,10 @@ class FavoriteAdapter(private val data: CompanyData) : RecyclerView.Adapter<Favo
     override fun getItemCount() = data.name.size
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
-        holder.nameText.text = data.name[position]
-        holder.locationText.text = data.location[position]
-        holder.favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
+        holder.apply {
+            nameText.text = data.name[position]
+            locationText.text = data.location[position]
+            favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
+        }
     }
 }

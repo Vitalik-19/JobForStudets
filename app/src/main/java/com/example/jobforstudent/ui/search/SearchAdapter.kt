@@ -27,10 +27,12 @@ class SearchAdapter(private val data: CompanyData) : RecyclerView.Adapter<Search
     override fun getItemCount() = data.name.size
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.nameText.text = data.name[position]
-        holder.locationText.text = data.location[position]
-        holder.favoriteImage.setOnClickListener {
-            holder.favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
+        holder.apply {
+            nameText.text = data.name[position]
+            locationText.text = data.location[position]
+            favoriteImage.setOnClickListener {
+                favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
+            }
         }
     }
 }
