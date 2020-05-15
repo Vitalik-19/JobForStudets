@@ -19,7 +19,12 @@
         android:id="@+id/navigation_search"
         android:name="com.example.jobforstudent.ui.search.SearchFragment"
         android:label="@string/title_search"
-        tools:layout="@layout/search_fragment" />
+        tools:layout="@layout/search_fragment" >
+        <action
+            android:id="@+id/action_navigation_search_to_editAdvertFragment"
+            app:destination="@id/editAdvertFragment"
+            app:popUpTo="@id/editAdvertFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.example.jobforstudent.ui.profile.ProfileFragment"
@@ -39,5 +44,19 @@
             android:id="@+id/action_loginFragment_to_navigation_profile"
             app:destination="@id/navigation_profile"
             app:popUpTo="@id/navigation_profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/workFragment"
+        android:name="com.example.jobforstudent.ui.work.WorkFragment"
+        android:label="work_fragment"
+        tools:layout="@layout/work_fragment" />
+    <fragment
+        android:id="@+id/editAdvertFragment"
+        android:name="com.example.jobforstudent.ui.editadvert.EditAdvertFragment"
+        android:label="EditAdvertFragment" >
+        <action
+            android:id="@+id/action_editAdvertFragment_to_navigation_search"
+            app:destination="@id/navigation_search"
+            app:popUpTo="@id/editAdvertFragment" />
     </fragment>
 </navigation>

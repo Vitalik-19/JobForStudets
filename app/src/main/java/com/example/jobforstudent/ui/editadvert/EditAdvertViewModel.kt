@@ -1,4 +1,4 @@
-package com.example.jobforstudent.ui.search
+package com.example.jobforstudent.ui.editadvert
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -8,7 +8,7 @@ import com.example.jobforstudent.database.Advert
 import com.example.jobforstudent.database.AdvertDatabaseDao
 import kotlinx.coroutines.*
 
-class SearchViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
+class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
 
     private var viewModelJob = Job()
 
@@ -19,11 +19,23 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private var createAdvert = MutableLiveData<Advert?>()
-    val adverts = database.getAllAdvert()
 
-    private val _navigateToAdvert = MutableLiveData<Advert>()
-    val navigateToAdvert: LiveData<Advert>
-        get() = _navigateToAdvert
+    private val _editNameWork = MutableLiveData<String>()
+    val editNameWork: LiveData<String>
+        get() = _editNameWork
+
+    private val _editCompanyName = MutableLiveData<String>()
+    val editCompanyName: LiveData<String>
+        get() = _editCompanyName
+
+    private val _editLocation = MutableLiveData<String>()
+    val editLocation: LiveData<String>
+        get() = _editLocation
+
+    private val _editSalary = MutableLiveData<Int>()
+    val editSalary: LiveData<Int>
+        get() = _editSalary
+
 
     init {
         initializeCreateAdvert()
@@ -38,21 +50,27 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
     private suspend fun getCreateAdvertFromDatabase(): Advert? {
         return withContext(Dispatchers.IO) {
             val advert = database.getCreateAdvert()
-
-//            if (advert?.workName != "Work Name") {
-//                advert = null
-//            }
             advert
         }
     }
 
-    fun onStartCreateAdvert() {
+    fun onCreateAdvert() {
         uiScope.launch {
-            val newAdvert = Advert()
-            newAdvert.salary = System.currentTimeMillis().toInt()
-            insert(newAdvert)
+            val newNight = Advert()
+            newNight.workName = editNameWork.value ?: ""
+            newNight.companyName = editCompanyName.value ?: ""
+            newNight.location = editLocation.value ?: ""
+            newNight.salary = editSalary.value ?: 0
+            insert(newNight)
             createAdvert.value = getCreateAdvertFromDatabase()
         }
+    }
+
+    fun dataFilling(work: String, company: String, location: String, salary: Int) {
+        _editNameWork.value = work
+        _editCompanyName.value = company
+        _editLocation.value = location
+        _editSalary.value = salary
     }
 
     private suspend fun insert(advert: Advert) {
@@ -61,20 +79,10 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
         }
     }
 
-    fun onStopCreateAdvert() {
-        uiScope.launch {
-            val oldAdvert = createAdvert.value ?: return@launch
-            oldAdvert.workName = "Android"
-            oldAdvert.companyName = "Vitalik_19"
-            oldAdvert.location = "Vinnytsia"
-            update(oldAdvert)
-            _navigateToAdvert.value = oldAdvert
-        }
-    }
-
     private suspend fun update(advert: Advert) {
         withContext(Dispatchers.IO) {
             database.update(advert)
         }
     }
+
 }
