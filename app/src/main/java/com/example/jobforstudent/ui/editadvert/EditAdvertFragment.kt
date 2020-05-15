@@ -19,7 +19,7 @@ class EditAdvertFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.edit_advert_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(EditAdvertViewModel::class.java)
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
         return binding.root
     }
 }

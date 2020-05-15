@@ -21,7 +21,7 @@ class FavoriteFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.favorite_fragment, container, false)
         viewModel = ViewModelProviders.of(this).get(FavoriteViewModel::class.java)
         binding.favoriteViewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
         binding.apply {
             favoriteFragmentRecyclerView.adapter = FavoriteAdapter(CompanyData())
             favoriteFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
