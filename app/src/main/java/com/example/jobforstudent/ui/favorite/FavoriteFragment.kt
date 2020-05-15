@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jobforstudent.CompanyData
 import com.example.jobforstudent.R
 import com.example.jobforstudent.databinding.FavoriteFragmentBinding
 
@@ -23,7 +22,7 @@ class FavoriteFragment : Fragment() {
         binding.favoriteViewModel = viewModel
         binding.setLifecycleOwner(this)
         binding.apply {
-            favoriteFragmentRecyclerView.adapter = FavoriteAdapter(CompanyData())
+//            favoriteFragmentRecyclerView.adapter = FavoriteAdapter(CompanyData())
             favoriteFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
         }
         return binding.root

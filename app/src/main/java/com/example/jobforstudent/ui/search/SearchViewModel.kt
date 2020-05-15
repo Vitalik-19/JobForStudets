@@ -37,7 +37,7 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
 
     private suspend fun getCreateAdvertFromDatabase(): Advert? {
         return withContext(Dispatchers.IO) {
-            var advert = database.getCreateAdvert()
+            val advert = database.getCreateAdvert()
 
 //            if (advert?.workName != "Work Name") {
 //                advert = null
@@ -48,9 +48,9 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
 
     fun onStartCreateAdvert() {
         uiScope.launch {
-            val newNight = Advert()
-            newNight.salary = System.currentTimeMillis().toInt()
-            insert(newNight)
+            val newAdvert = Advert()
+            newAdvert.salary = System.currentTimeMillis().toInt()
+            insert(newAdvert)
             createAdvert.value = getCreateAdvertFromDatabase()
         }
     }
