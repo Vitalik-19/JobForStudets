@@ -46,8 +46,7 @@ class SearchFragment : Fragment() {
                 Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_editAdvertFragment))
 
         binding.button.setOnClickListener {
-            viewModel.onStartCreateAdvert()
-            viewModel.onStopCreateAdvert()
+            //TODO search
         }
         return binding.root
     }

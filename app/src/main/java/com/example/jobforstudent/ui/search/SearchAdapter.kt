@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.Advert
@@ -42,6 +43,8 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
             }
+            itemView.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_workFragment))
         }
     }
 }

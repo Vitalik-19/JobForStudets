@@ -39,42 +39,7 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
         return withContext(Dispatchers.IO) {
             val advert = database.getCreateAdvert()
 
-//            if (advert?.workName != "Work Name") {
-//                advert = null
-//            }
             advert
-        }
-    }
-
-    fun onStartCreateAdvert() {
-        uiScope.launch {
-            val newAdvert = Advert()
-            newAdvert.salary = System.currentTimeMillis().toInt()
-            insert(newAdvert)
-            createAdvert.value = getCreateAdvertFromDatabase()
-        }
-    }
-
-    private suspend fun insert(advert: Advert) {
-        withContext(Dispatchers.IO) {
-            database.insert(advert)
-        }
-    }
-
-    fun onStopCreateAdvert() {
-        uiScope.launch {
-            val oldAdvert = createAdvert.value ?: return@launch
-            oldAdvert.workName = "Android"
-            oldAdvert.companyName = "Vitalik_19"
-            oldAdvert.location = "Vinnytsia"
-            update(oldAdvert)
-            _navigateToAdvert.value = oldAdvert
-        }
-    }
-
-    private suspend fun update(advert: Advert) {
-        withContext(Dispatchers.IO) {
-            database.update(advert)
         }
     }
 }
