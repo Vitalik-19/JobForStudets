@@ -1,6 +1,7 @@
 package com.example.jobforstudent
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
@@ -29,7 +30,11 @@ class MainActivity : AppCompatActivity() {
                 setOf(R.id.navigation_search, R.id.navigation_favorite, R.id.navigation_notifications, R.id.navigation_profile)
         )
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
-            //   Toast.makeText(this, "${nd.id}, ${nd.label}, ${nd.parent},${R.layout.login_fragment}", Toast.LENGTH_LONG).show()
+            if (nd.id == R.id.navigation_search || nd.id == R.id.navigation_favorite || nd.id == R.id.navigation_notifications || nd.id == R.id.navigation_profile) {
+                binding.navView.visibility = View.VISIBLE
+            } else {
+                binding.navView.visibility = View.GONE
+            }
         }
 
         setupActionBarWithNavController(navController, appBarConfiguration)
