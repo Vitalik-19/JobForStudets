@@ -57,6 +57,7 @@
         <action
             android:id="@+id/action_editAdvertFragment_to_navigation_search"
             app:destination="@id/navigation_search"
-            app:popUpTo="@id/editAdvertFragment" />
+            app:popUpTo="@id/navigation_search"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>
