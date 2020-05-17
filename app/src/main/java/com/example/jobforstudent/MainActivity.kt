@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
-                setOf(R.id.navigation_search, R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_profile)
+                setOf(R.id.navigation_search, R.id.navigation_favorite, R.id.navigation_notifications, R.id.navigation_profile)
         )
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             //   Toast.makeText(this, "${nd.id}, ${nd.label}, ${nd.parent},${R.layout.login_fragment}", Toast.LENGTH_LONG).show()
