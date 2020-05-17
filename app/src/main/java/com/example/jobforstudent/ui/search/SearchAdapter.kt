@@ -1,11 +1,12 @@
 package com.example.jobforstudent.ui.search
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.Advert
@@ -17,6 +18,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
+    private val bundle = Bundle()
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameWorkText: TextView = itemView.findViewById(R.id.item_advert_work_name_text)
@@ -43,8 +45,11 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
             }
-            itemView.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_workFragment))
+            itemView.setOnClickListener {
+                bundle.putLong("advertId", data[position].advertId)
+                it.findNavController().navigate(R.id.action_navigation_search_to_workFragment, bundle)
+
+            }
         }
     }
 }
