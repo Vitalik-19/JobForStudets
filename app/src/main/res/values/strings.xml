@@ -11,4 +11,8 @@
     <string name="vacancy">Вакансія</string>
     <string name="place">Місто</string>
     <string name="button_saerch">Шукати</string>
+
+    <!--login-->
+    <string name="login">Вхід</string>
+    <string name="registration">Реєстрація</string>
 </resources>
