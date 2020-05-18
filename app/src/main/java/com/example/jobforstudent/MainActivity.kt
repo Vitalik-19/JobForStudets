@@ -22,13 +22,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         drawerLayout = binding.drawerLayout
-
+        //todo to move to a fragment
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
                 setOf(R.id.navigation_search, R.id.navigation_favorite, R.id.navigation_notifications, R.id.navigation_profile)
         )
+
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             if (nd.id == R.id.navigation_search || nd.id == R.id.navigation_favorite || nd.id == R.id.navigation_notifications || nd.id == R.id.navigation_profile) {
                 binding.navView.visibility = View.VISIBLE
@@ -39,6 +40,8 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
+
+        navController.popBackStack(R.id.navigation_search, false)
     }
 
     override fun onSupportNavigateUp(): Boolean {

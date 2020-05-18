@@ -27,10 +27,14 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = viewModel
         binding.setLifecycleOwner(this)
         //todo verification login
+        binding.loginFragmentLoginButton.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_navigation_search)
+        )
         binding.loginFragmentRegistrationButton.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment)
         )
 
+        //todo delete the Back button
         return binding.root
     }
 }
