@@ -18,11 +18,12 @@
 
         <EditText
             android:id="@+id/registration_fragment_login_edit_text"
+            style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Логін"
             android:inputType="textPersonName"
-            android:text="Логін"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_password_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -33,10 +34,11 @@
 
         <EditText
             android:id="@+id/registration_fragment_password_edit_text"
+            style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Пароль"
+            android:hint="Пароль"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_repeat_password_edit_text"
             app:layout_constraintEnd_toEndOf="@+id/registration_fragment_login_edit_text"
             app:layout_constraintStart_toStartOf="@+id/registration_fragment_login_edit_text"
@@ -44,10 +46,11 @@
 
         <EditText
             android:id="@+id/registration_fragment_repeat_password_edit_text"
+            style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="Повтор паролю"
+            android:hint="Повтор паролю"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_registration_button"
             app:layout_constraintEnd_toEndOf="@+id/registration_fragment_password_edit_text"
             app:layout_constraintStart_toStartOf="@+id/registration_fragment_password_edit_text"

@@ -9,49 +9,60 @@
             type="com.example.jobforstudent.ui.editadvert.EditAdvertViewModel" />
     </data>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:padding="10dp"
         tools:context=".ui.editadvert.EditAdvertFragment">
 
-        <EditText
-            android:id="@+id/edit_advert_fragment_name_work_edit_text"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name work" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edit_advert_fragment_salary_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Salary" />
+            <EditText
+                android:id="@+id/edit_advert_fragment_name_work_edit_text"
+                style="@style/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Назва посади"
+                android:inputType="textPersonName" />
 
-        <EditText
-            android:id="@+id/edit_advert_fragment_company_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Company Name" />
+            <EditText
+                android:id="@+id/edit_advert_fragment_salary_edit_text"
+                style="@style/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Зарплата"
+                android:inputType="number" />
 
-        <EditText
-            android:id="@+id/edit_advert_fragment_location_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Location" />
+            <EditText
+                android:id="@+id/edit_advert_fragment_company_edit_text"
+                style="@style/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Назва компанії"
+                android:inputType="textPersonName" />
 
-        <Button
-            android:id="@+id/edit_advert_fragment_add_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add" />
+            <EditText
+                android:id="@+id/edit_advert_fragment_location_edit_text"
+                style="@style/editTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Розташування"
+                android:inputType="textPersonName" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/edit_advert_fragment_add_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:text="Add" />
+        </LinearLayout>
+    </ScrollView>
 </layout>
