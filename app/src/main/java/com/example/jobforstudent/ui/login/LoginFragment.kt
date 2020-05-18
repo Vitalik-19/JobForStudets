@@ -30,6 +30,7 @@ class LoginFragment : Fragment() {
         binding.loginFragmentLoginButton.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_navigation_search)
         )
+        //todo button navigation to employer fragment
         binding.loginFragmentRegistrationButton.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment)
         )
