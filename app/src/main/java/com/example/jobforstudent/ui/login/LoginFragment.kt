@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.example.jobforstudent.R
 import com.example.jobforstudent.databinding.LoginFragmentBinding
 
@@ -22,12 +23,14 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
-        // TODO: Use the ViewModel
+        binding.loginViewModel = viewModel
+        binding.setLifecycleOwner(this)
+        //todo verification login
+        binding.loginFragmentRegistrationButton.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment)
+        )
+
+        return binding.root
     }
 }

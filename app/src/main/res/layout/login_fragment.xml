@@ -1,18 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="loginViewModel"
+            type="com.example.jobforstudent.ui.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
         tools:context=".ui.login.LoginFragment">
 
-        <TextView
+        <EditText
+            android:id="@+id/login_fragment_login_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="Hello"
-            android:textSize="30sp" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Логін"
+            app:layout_constraintBottom_toTopOf="@+id/login_fragment_password_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.50"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/login_fragment_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:text="Пароль"
+            app:layout_constraintBottom_toTopOf="@+id/login_fragment_login_button"
+            app:layout_constraintEnd_toEndOf="@+id/login_fragment_login_edit_text"
+            app:layout_constraintStart_toStartOf="@+id/login_fragment_login_edit_text"
+            app:layout_constraintTop_toBottomOf="@+id/login_fragment_login_edit_text" />
+
+        <Button
+            android:id="@+id/login_fragment_login_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:text="@string/login"
+            app:layout_constraintBottom_toTopOf="@+id/login_fragment_registration_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_fragment_password_edit_text" />
+
+        <Button
+            android:id="@+id/login_fragment_registration_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/registration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/login_fragment_login_button"
+            app:layout_constraintStart_toStartOf="@+id/login_fragment_login_button"
+            app:layout_constraintTop_toBottomOf="@+id/login_fragment_login_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

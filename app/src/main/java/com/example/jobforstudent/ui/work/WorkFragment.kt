@@ -32,7 +32,7 @@ class WorkFragment : Fragment() {
 
         binding.workViewModel = viewModel
         binding.setLifecycleOwner(this)
-
+        //todo add safe args
         viewModel.initializeAdvert(arguments!!.getLong("advertId"))
 
         viewModel.advert.observe(viewLifecycleOwner, Observer {
