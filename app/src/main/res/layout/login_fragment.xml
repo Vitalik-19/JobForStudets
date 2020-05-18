@@ -45,6 +45,7 @@
 
         <Button
             android:id="@+id/login_fragment_login_button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
@@ -56,6 +57,7 @@
 
         <Button
             android:id="@+id/login_fragment_registration_button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
