@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
                 setOf(R.id.navigation_search, R.id.navigation_favorite, R.id.navigation_notifications, R.id.navigation_profile)
         )
-
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             if (nd.id == R.id.navigation_search || nd.id == R.id.navigation_favorite || nd.id == R.id.navigation_notifications || nd.id == R.id.navigation_profile) {
                 binding.navView.visibility = View.VISIBLE
@@ -40,8 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
-
-        navController.popBackStack(R.id.navigation_search, false)
+        //todo fix popBackStack
+//        navController.popBackStack(R.id.navigation_search, true)
     }
 
     override fun onSupportNavigateUp(): Boolean {
