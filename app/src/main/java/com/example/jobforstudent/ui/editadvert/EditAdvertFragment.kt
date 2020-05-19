@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.jobforstudent.R
-import com.example.jobforstudent.database.AdvertDatabase
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.EditAdvertFragmentBinding
 
 
@@ -21,7 +21,7 @@ class EditAdvertFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.edit_advert_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = AdvertDatabase.getInstance(application).advertDatabaseDao
+        val dataSource = AppDatabase.getInstance(application).advertDatabaseDao
         val viewModelFactory = EditAdvertViewModelFactory(dataSource, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(EditAdvertViewModel::class.java)
 

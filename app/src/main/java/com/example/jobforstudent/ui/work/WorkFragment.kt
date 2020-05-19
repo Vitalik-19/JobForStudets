@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.jobforstudent.R
-import com.example.jobforstudent.database.AdvertDatabase
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.WorkFragmentBinding
 
 
@@ -26,7 +26,7 @@ class WorkFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.work_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = AdvertDatabase.getInstance(application).advertDatabaseDao
+        val dataSource = AppDatabase.getInstance(application).advertDatabaseDao
         val viewModelFactory = WorkViewModelFactory(dataSource, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(WorkViewModel::class.java)
 
