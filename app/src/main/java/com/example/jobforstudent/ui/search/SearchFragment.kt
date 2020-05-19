@@ -42,8 +42,8 @@ class SearchFragment : Fragment() {
             }
         })
 
-        binding.floatingActionButton.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_editAdvertFragment))
+//        binding.floatingActionButton.setOnClickListener(
+//                Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_editAdvertFragment))
 
         binding.button.setOnClickListener {
             //TODO search

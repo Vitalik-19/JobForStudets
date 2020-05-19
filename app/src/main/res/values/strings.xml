@@ -10,9 +10,13 @@
     <!--share-->
     <string name="vacancy">Вакансія</string>
     <string name="place">Місто</string>
-    <string name="button_saerch">Шукати</string>
+    <string name="button_search">Шукати</string>
 
     <!--login-->
     <string name="login">Вхід</string>
     <string name="registration">Реєстрація</string>
+    <string name="list_advert">Мої оголошення</string>
+    <string name="title_activity_employer">EmployerActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
 </resources>

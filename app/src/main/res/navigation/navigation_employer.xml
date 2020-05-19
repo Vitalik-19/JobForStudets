@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_employer"
+    app:startDestination="@id/advertEmployerFragment">
+
+    <fragment
+        android:id="@+id/editAdvertFragment"
+        android:name="com.example.jobforstudent.ui.editadvert.EditAdvertFragment"
+        android:label="EditAdvertFragment"
+        tools:layout="@layout/edit_advert_fragment">
+        <action
+            android:id="@+id/action_editAdvertFragment_to_advertEmployerFragment"
+            app:destination="@id/advertEmployerFragment"
+            app:popUpTo="@id/advertEmployerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/advertEmployerFragment"
+        android:name="com.example.jobforstudent.ui.advertemployer.AdvertEmployerFragment"
+        android:label="advert_employer_fragment"
+        tools:layout="@layout/advert_employer_fragment">
+        <action
+            android:id="@+id/action_advertEmployerFragment_to_editAdvertFragment"
+            app:destination="@id/editAdvertFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileEmployerFragment"
+        android:name="com.example.jobforstudent.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile_fragment" />
+</navigation>

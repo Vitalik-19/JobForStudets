@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Логін"
             android:inputType="textPersonName"
-            android:text="Логін"
             app:layout_constraintBottom_toTopOf="@+id/login_fragment_password_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:text="Пароль"
+            android:hint="Пароль"
             app:layout_constraintBottom_toTopOf="@+id/login_fragment_login_button"
             app:layout_constraintEnd_toEndOf="@+id/login_fragment_login_edit_text"
             app:layout_constraintStart_toStartOf="@+id/login_fragment_login_edit_text"
@@ -45,6 +45,7 @@
 
         <Button
             android:id="@+id/login_fragment_login_button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
@@ -56,6 +57,7 @@
 
         <Button
             android:id="@+id/login_fragment_registration_button"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -64,6 +66,16 @@
             app:layout_constraintEnd_toEndOf="@+id/login_fragment_login_button"
             app:layout_constraintStart_toStartOf="@+id/login_fragment_login_button"
             app:layout_constraintTop_toBottomOf="@+id/login_fragment_login_button" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="До вікна роботодавця"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/login_fragment_registration_button"
+            app:layout_constraintStart_toStartOf="@+id/login_fragment_registration_button"
+            app:layout_constraintTop_toBottomOf="@+id/login_fragment_registration_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
