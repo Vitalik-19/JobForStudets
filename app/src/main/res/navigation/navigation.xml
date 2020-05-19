@@ -16,13 +16,17 @@
         tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_seekerFragment"
-            app:destination="@id/seekerFragment" />
+            app:destination="@id/seekerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
             android:id="@+id/action_loginFragment_to_employerFragment"
-            app:destination="@id/employerFragment" />
+            app:destination="@id/employerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -31,7 +35,9 @@
         tools:layout="@layout/registration_fragment">
         <action
             android:id="@+id/action_registrationFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/employerFragment"
