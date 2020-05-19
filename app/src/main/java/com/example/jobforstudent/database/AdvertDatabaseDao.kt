@@ -11,7 +11,7 @@ public interface AdvertDatabaseDao {
     fun insert(advert: Advert)
 
     // Удаление advert из бд
-    @Query("DELETE FROM advert_info_table")
+    @Query("DELETE FROM Advert")
     fun clear()
 
     // Обновление advert в бд
@@ -19,12 +19,17 @@ public interface AdvertDatabaseDao {
     fun update(advert: Advert)
 
     // Получение всех Person из бд за ключем
-    @Query("SELECT * from advert_info_table WHERE advertId = :key")
+    @Query("SELECT * from Advert WHERE advertId = :key")
     fun get(key: Long): Advert?
 
-    @Query("SELECT * FROM advert_info_table ORDER BY advertId DESC")
+    @Query("SELECT * FROM Advert ORDER BY advertId DESC")
     fun getAllAdvert(): LiveData<List<Advert>>
 
-    @Query("SELECT * FROM advert_info_table ORDER BY advertId DESC LIMIT 1")
+    @Query("SELECT * FROM Advert ORDER BY advertId DESC LIMIT 1")
     fun getCreateAdvert(): Advert?
+
+    @Transaction
+    @Query("SELECT * FROM Advert")
+    fun getAdvertWithSeekers(): List<AdvertWithSeekers>
+
 }

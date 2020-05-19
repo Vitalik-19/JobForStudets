@@ -36,7 +36,6 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
     val editSalary: LiveData<Int>
         get() = _editSalary
 
-
     init {
         initializeCreateAdvert()
     }

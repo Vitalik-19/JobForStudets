@@ -5,13 +5,17 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Advert::class], version = 1, exportSchema = false)
-abstract class AdvertDatabase : RoomDatabase() {
+@Database(entities = [Advert::class, User::class, Employer::class,
+    Seeker::class,/* EmployerWithAdverts::class, AdvertWithSeekers::class,
+    SeekerWithAdverts::class, UserWithEmployers::class, UserWithSeekers::class,*/
+    AdvertsSeekers::class], version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
 
     /**
      * Connects the database to the DAO.
      */
     abstract val advertDatabaseDao: AdvertDatabaseDao
+    abstract val userDatabaseDao: UserDatabaseDao
 
     /**
      * Define a companion object, this allows us to add functions on the SleepDatabase class.
@@ -30,7 +34,7 @@ abstract class AdvertDatabase : RoomDatabase() {
          *  thread to shared data are visible to other threads.
          */
         @Volatile
-        private var INSTANCE: AdvertDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
         /**
          * Helper function to get the database.
@@ -49,7 +53,7 @@ abstract class AdvertDatabase : RoomDatabase() {
          *
          * @param context The application context Singleton, used to get access to the filesystem.
          */
-        fun getInstance(context: Context): AdvertDatabase {
+        fun getInstance(context: Context): AppDatabase {
             // Multiple threads can ask for the database at the same time, ensure we only initialize
             // it once by using synchronized. Only one thread may enter a synchronized block at a
             // time.
@@ -61,7 +65,7 @@ abstract class AdvertDatabase : RoomDatabase() {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                             context.applicationContext,
-                            AdvertDatabase::class.java,
+                            AppDatabase::class.java,
                             "advert_database"
                     )
                             // Wipes and rebuilds instead of migrating if no Migration object.

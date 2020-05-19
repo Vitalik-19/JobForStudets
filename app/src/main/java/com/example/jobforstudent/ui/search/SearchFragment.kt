@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jobforstudent.R
-import com.example.jobforstudent.database.AdvertDatabase
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.SearchFragmentBinding
 
 
@@ -21,7 +21,7 @@ class SearchFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.search_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = AdvertDatabase.getInstance(application).advertDatabaseDao
+        val dataSource = AppDatabase.getInstance(application).advertDatabaseDao
         val viewModelFactory = SearchViewModelFactory(dataSource, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
         val adapter = SearchAdapter()
