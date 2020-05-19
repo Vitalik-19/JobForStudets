@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.AdvertDatabase
@@ -30,7 +29,7 @@ class SearchFragment : Fragment() {
         binding.searchFragmentRecyclerView.adapter = adapter
         binding.searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
         binding.searchViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         viewModel.navigateToAdvert.observe(viewLifecycleOwner, Observer {
             it?.let {
 
@@ -41,9 +40,6 @@ class SearchFragment : Fragment() {
                 adapter.data = it
             }
         })
-
-//        binding.floatingActionButton.setOnClickListener(
-//                Navigation.createNavigateOnClickListener(R.id.action_navigation_search_to_editAdvertFragment))
 
         binding.button.setOnClickListener {
             //TODO search

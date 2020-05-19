@@ -47,8 +47,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             }
             itemView.setOnClickListener {
                 bundle.putLong("advertId", data[position].advertId)
-//                it.findNavController().navigate(R.id.action_navigation_search_to_workFragment, bundle)
-
+                it.findNavController().navigate(R.id.action_searchFragment_to_workFragment, bundle)
             }
         }
     }
