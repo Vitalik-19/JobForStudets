@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.jobforstudent.R
@@ -35,7 +37,14 @@ class SeekerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.seekerFragment)
-
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+            if (nd.id == R.id.searchFragment || nd.id == R.id.favoriteFragment
+                || nd.id == R.id.notificationsFragment|| nd.id == R.id.profileSeekerFragment) {
+                binding.navViewSeeker.visibility = View.VISIBLE
+            } else {
+                binding.navViewSeeker.visibility = View.GONE
+            }
+        }
         binding.navViewSeeker.setupWithNavController(navController)
     }
 }

@@ -8,6 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.jobforstudent.R
@@ -33,7 +35,13 @@ class EmployerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.bottom_nav_fragment_employer)
-
+        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+            if (nd.id == R.id.advertEmployerFragment || nd.id == R.id.profileEmployerFragment) {
+                binding.navViewEmployer.visibility = View.VISIBLE
+            } else {
+                binding.navViewEmployer.visibility = View.GONE
+            }
+        }
         binding.navViewEmployer.setupWithNavController(navController)
     }
 }
