@@ -34,9 +34,9 @@ class EditAdvertFragment : Fragment() {
                     binding.editAdvertFragmentSalaryEditText.text.toString().toInt()
             )
             viewModel.onCreateAdvert()
-            view.findNavController().navigate(R.id.action_editAdvertFragment_to_navigation_search)
+            view.findNavController().navigate(R.id.action_editAdvertFragment_to_advertEmployerFragment)
         }
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         return binding.root
     }
 }

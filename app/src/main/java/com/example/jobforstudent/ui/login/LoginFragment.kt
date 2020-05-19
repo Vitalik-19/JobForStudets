@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.jobforstudent.R
 import com.example.jobforstudent.databinding.LoginFragmentBinding
@@ -23,19 +23,21 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.loginViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         //todo verification login
         binding.loginFragmentLoginButton.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_navigation_search)
-        )
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_seekerFragment))
+
         //todo button navigation to employer fragment
         binding.loginFragmentRegistrationButton.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment)
-        )
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment))
 
         //todo delete the Back button
+        binding.button.setOnClickListener(
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_employerFragment))
+
         return binding.root
     }
 }

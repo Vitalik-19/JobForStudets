@@ -22,9 +22,9 @@ class ProfileFragment : Fragment() {
     private lateinit var viewModel: ProfileViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false)
-        binding.profileFragmentLoginProfile.setOnClickListener(
-                //TODO to make an account out
-                Navigation.createNavigateOnClickListener(R.id.action_navigation_profile_to_loginFragment))
+//        binding.profileFragmentLoginProfile.setOnClickListener(
+//                //TODO to make an account out
+//                Navigation.createNavigateOnClickListener(R.id.action_navigation_profile_to_loginFragment))
         return binding.root
     }
 
