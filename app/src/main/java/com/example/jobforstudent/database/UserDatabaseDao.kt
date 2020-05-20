@@ -8,7 +8,13 @@ public interface UserDatabaseDao {
 
     // Добавление user в бд
     @Insert
-    fun insert(user: User)
+    fun insertUser(user: User)
+
+    @Insert
+    fun insertEmployer(employer: Employer)
+
+    @Insert
+    fun insertSeeker(seeker: Seeker)
 
     // Удаление user из бд
     @Query("DELETE FROM User")
@@ -17,6 +23,9 @@ public interface UserDatabaseDao {
     // Обновление user в бд
     @Update
     fun update(user: User)
+
+    @Query("SELECT * FROM Employer")
+    fun getAllEmployer(): LiveData<List<Employer>>
 
     @Transaction
     @Query("SELECT * FROM User")
