@@ -24,7 +24,7 @@
             android:ems="10"
             android:hint="Логін"
             android:inputType="textPersonName"
-            android:text="@={loginViewModel.editLogin}"
+            android:text="@={loginViewModel._editLogin}"
             app:layout_constraintBottom_toTopOf="@+id/login_fragment_password_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

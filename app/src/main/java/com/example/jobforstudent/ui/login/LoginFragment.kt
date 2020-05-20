@@ -36,22 +36,25 @@ class LoginFragment : Fragment() {
         binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.employerNavigationEvent.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-                if (it) findNavController().navigate(R.id.action_loginFragment_to_employerFragment)
-            }
-        })
-        viewModel.seekerNavigationEvent.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
-                if (it) findNavController().navigate(R.id.action_loginFragment_to_seekerFragment)
-            }
-        })
-
-        //todo verification login
-//        binding.loginFragmentLoginButton.setOnClickListener(
-//                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_seekerFragment))
+        viewModel.apply {
+            employerNavigationEvent.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                    if (it) findNavController().navigate(R.id.action_loginFragment_to_employerFragment)
+                }
+            })
+            seekerNavigationEvent.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                    if (it) findNavController().navigate(R.id.action_loginFragment_to_seekerFragment)
+                }
+            })
+            toast.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                }
+            })
+        }
 
         //todo button navigation to employer fragment
         binding.loginFragmentRegistrationButton.setOnClickListener(
