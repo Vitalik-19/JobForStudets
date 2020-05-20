@@ -27,6 +27,15 @@ public interface UserDatabaseDao {
     @Query("SELECT * FROM Employer")
     fun getAllEmployer(): LiveData<List<Employer>>
 
+    @Query("SELECT * FROM Employer WHERE loginEmployer = :login")
+    fun getEmployer(login: String): Employer?
+
+    @Query("SELECT * FROM Seeker")
+    fun getAllSeeker(): LiveData<List<Seeker>>
+
+    @Query("SELECT * FROM Seeker WHERE loginSeeker = :login")
+    fun getSeeker(login: String): Seeker?
+
     @Transaction
     @Query("SELECT * FROM User")
     fun getUserWithEmployers(): List<UserWithEmployers>

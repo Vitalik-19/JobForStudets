@@ -8,11 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
+import com.example.jobforstudent.database.Employer
 import com.example.jobforstudent.database.EmployerWithAdverts
 
 class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertEmployerViewHolder>() {
 
-    var data = listOf<EmployerWithAdverts>()
+    var data = listOf<Employer>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -39,15 +40,15 @@ class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertE
         return AdvertEmployerAdapter.AdvertEmployerViewHolder(itemView)
     }
 
-    override fun getItemCount() = 0/*adverts.size*/
+    override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: AdvertEmployerViewHolder, position: Int) {
         holder.apply {
             //todo output data
-//            nameWorkText.text = adverts[position].workName
-//            companyNameText.text = adverts[position].companyName
-//            locationText.text = adverts[position].location
-//            salary.text = adverts[position].salary.toString()
+            nameWorkText.text = data[position].loginEmployer
+            companyNameText.text = data[position].password
+//            locationText.text = data[position].location
+//            salary.text = data[position].salary.toString()
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
             }
