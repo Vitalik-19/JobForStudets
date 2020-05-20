@@ -77,8 +77,7 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
             initializeCreateSeeker(editLogin.value)
             if (_seekerNavigationEvent.value == false || _employerNavigationEvent.value == false)
                 _toast.value = "Данні введено не вірно"
-        }
-        else _toast.value = "Введіть дані!"
+        } else _toast.value = "Введіть дані!"
     }
 
     private suspend fun getEmployerFromDatabase(login: String): Employer? {

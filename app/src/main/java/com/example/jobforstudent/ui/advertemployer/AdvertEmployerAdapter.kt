@@ -9,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.Employer
-import com.example.jobforstudent.database.EmployerWithAdverts
 
 class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertEmployerViewHolder>() {
 

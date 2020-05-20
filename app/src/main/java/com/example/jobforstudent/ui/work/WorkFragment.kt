@@ -31,7 +31,7 @@ class WorkFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(WorkViewModel::class.java)
 
         binding.workViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         //todo add safe args
         viewModel.initializeAdvert(arguments!!.getLong("advertId"))
 
