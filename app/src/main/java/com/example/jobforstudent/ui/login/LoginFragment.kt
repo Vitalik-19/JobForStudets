@@ -39,13 +39,11 @@ class LoginFragment : Fragment() {
         viewModel.apply {
             employerNavigationEvent.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
                     if (it) findNavController().navigate(R.id.action_loginFragment_to_employerFragment)
                 }
             })
             seekerNavigationEvent.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
                     if (it) findNavController().navigate(R.id.action_loginFragment_to_seekerFragment)
                 }
             })

@@ -56,26 +56,24 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
     private fun initializeCreateEmployer(login: String?) {
         uiScope.launch {
             _openEmployer.value = login?.let { getEmployerFromDatabase(it) }
-            if (openEmployer.value?.loginEmployer != null) {
+            if (openEmployer.value?.loginEmployer != null)
                 _employerNavigationEvent.value = true
-            }
         }
     }
 
     private fun initializeCreateSeeker(login: String?) {
         uiScope.launch {
             _openSeeker.value = login?.let { getSeekerFromDatabase(it) }
-            if (openSeeker.value?.loginSeeker != null) {
+            if (openSeeker.value?.loginSeeker != null)
                 _seekerNavigationEvent.value = true
-            }
         }
     }
 
     fun onLogin() {
-        if (editLogin.value != null) {
+        if (editLogin.value != "" && editLogin.value != null) {
             initializeCreateEmployer(editLogin.value)
             initializeCreateSeeker(editLogin.value)
-            if (_seekerNavigationEvent.value == false || _employerNavigationEvent.value == false)
+            if (seekerNavigationEvent.value == false || employerNavigationEvent.value == false)
                 _toast.value = "Данні введено не вірно"
         } else _toast.value = "Введіть дані!"
     }
