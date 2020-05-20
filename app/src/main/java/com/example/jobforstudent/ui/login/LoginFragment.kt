@@ -4,11 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.jobforstudent.R
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.LoginFragmentBinding
 
 
@@ -23,12 +27,34 @@ class LoginFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = LoginViewModelFactory(dataSource, application)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(LoginViewModel::class.java)
+
         binding.loginViewModel = viewModel
         binding.lifecycleOwner = this
-        //todo verification login
-        binding.loginFragmentLoginButton.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_seekerFragment))
+
+        viewModel.apply {
+            employerNavigationEvent.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                    if (it) findNavController().navigate(R.id.action_loginFragment_to_employerFragment)
+                }
+            })
+            seekerNavigationEvent.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                    if (it) findNavController().navigate(R.id.action_loginFragment_to_seekerFragment)
+                }
+            })
+            toast.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+                }
+            })
+        }
 
         //todo button navigation to employer fragment
         binding.loginFragmentRegistrationButton.setOnClickListener(

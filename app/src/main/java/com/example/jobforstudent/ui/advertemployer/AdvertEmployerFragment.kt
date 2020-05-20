@@ -38,7 +38,7 @@ class AdvertEmployerFragment : Fragment() {
         binding.advertEmployerViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.adverts.observe(viewLifecycleOwner, Observer {view ->
+        viewModel.employer.observe(viewLifecycleOwner, Observer {view ->
                 adapter.data = view
         })
 

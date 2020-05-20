@@ -18,4 +18,5 @@ class AdvertEmployerViewModel(val database: UserDatabaseDao, application: Applic
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     val adverts = database.getEmployerWithAdverts()
+    val employer = database.getAllEmployer()
 }
