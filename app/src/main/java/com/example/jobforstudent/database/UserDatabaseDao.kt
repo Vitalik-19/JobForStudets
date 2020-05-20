@@ -1,5 +1,6 @@
 package com.example.jobforstudent.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -27,7 +28,7 @@ public interface UserDatabaseDao {
 
     @Transaction
     @Query("SELECT * FROM Employer")
-    fun getEmployerWithAdverts(): List<EmployerWithAdverts>
+    fun getEmployerWithAdverts(): LiveData<List<EmployerWithAdverts>>
 
     @Transaction
     @Query("SELECT * FROM Seeker")
