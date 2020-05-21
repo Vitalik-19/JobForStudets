@@ -77,7 +77,7 @@
                 android:layout_weight="1"
                 android:checked="false"
                 android:onClick="@{() -> registrationViewModel.onPositionRadioButton(true)}"
-                android:text="Пошукач" />
+                android:text="Шукач" />
 
             <RadioButton
                 android:id="@+id/registration_fragment_employer_radio_button"
