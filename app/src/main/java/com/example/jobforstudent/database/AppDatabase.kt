@@ -5,10 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Advert::class, User::class, Employer::class,
-    Seeker::class,/* EmployerWithAdverts::class, AdvertWithSeekers::class,
-    SeekerWithAdverts::class, UserWithEmployers::class, UserWithSeekers::class,*/
-    AdvertsSeekers::class], version = 1, exportSchema = false)
+@Database(entities = [Advert::class, Employer::class,
+    Seeker::class, AdvertsSeekers::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     /**

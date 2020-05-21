@@ -14,7 +14,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.jobforstudent.ui.search.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/search_fragment" >
+        tools:layout="@layout/search_fragment">
         <action
             android:id="@+id/action_searchFragment_to_workFragment"
             app:destination="@id/workFragment" />

@@ -39,7 +39,7 @@ class SeekerFragment : Fragment() {
         val navController = Navigation.findNavController(requireActivity(), R.id.seekerFragment)
         navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
             if (nd.id == R.id.searchFragment || nd.id == R.id.favoriteFragment
-                || nd.id == R.id.notificationsFragment|| nd.id == R.id.profileSeekerFragment) {
+                    || nd.id == R.id.notificationsFragment || nd.id == R.id.profileSeekerFragment) {
                 binding.navViewSeeker.visibility = View.VISIBLE
             } else {
                 binding.navViewSeeker.visibility = View.GONE

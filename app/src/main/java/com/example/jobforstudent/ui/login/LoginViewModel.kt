@@ -48,50 +48,74 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
     val toast: LiveData<String>
         get() = _toast
 
+    private val _positionBool = MutableLiveData<Boolean>()
+    private val positionBool: LiveData<Boolean>
+        get() = _positionBool
+
     init {
+        _positionBool.value = true
         _employerNavigationEvent.value = false
         _seekerNavigationEvent.value = false
     }
 
-    private fun initializeCreateEmployer(login: String?) {
+    fun onPositionRadioButton(boolean: Boolean) {
+        _positionBool.value = boolean
+    }
+
+    private fun initializeCreateEmployer(login: String?, password: String?) {
         uiScope.launch {
-            _openEmployer.value = login?.let { getEmployerFromDatabase(it) }
-            if (openEmployer.value?.loginEmployer != null) {
-                _employerNavigationEvent.value = true
+            password?.let { login?.let { it1 -> getEmployerFromDatabase(it1, it).let { it2 -> _openEmployer.value = it2 } } }
+            when (openEmployer.value) {
+                null -> onToastSignIn()
+                else -> _employerNavigationEvent.value = true
             }
         }
     }
 
-    private fun initializeCreateSeeker(login: String?) {
+    private fun initializeCreateSeeker(login: String?, password: String?) {
         uiScope.launch {
-            _openSeeker.value = login?.let { getSeekerFromDatabase(it) }
-            if (openSeeker.value?.loginSeeker != null) {
-                _seekerNavigationEvent.value = true
+            password?.let { login?.let { it1 -> getSeekerFromDatabase(it1, it).let { it2 -> _openSeeker.value = it2 } } }
+            when (openSeeker.value) {
+                null -> onToastSignIn()
+                else -> _seekerNavigationEvent.value = true
             }
         }
     }
 
-    fun onLogin() {
-        if (editLogin.value != null) {
-            initializeCreateEmployer(editLogin.value)
-            initializeCreateSeeker(editLogin.value)
-            if (_seekerNavigationEvent.value == false || _employerNavigationEvent.value == false)
-                _toast.value = "Данні введено не вірно"
+    fun onSignIn() {
+        when {
+            positionBool.value!! -> {
+                initializeCreateSeeker(editLogin.value, editPassword.value)
+            }
+            !positionBool.value!! -> {
+                initializeCreateEmployer(editLogin.value, editPassword.value)
+            }
+
         }
-        else _toast.value = "Введіть дані!"
     }
 
-    private suspend fun getEmployerFromDatabase(login: String): Employer? {
+    private fun onToastSignIn() {
+        when {
+            editLogin.value == null || editLogin.value == "" &&
+                    editPassword.value == null || editPassword.value == "" -> _toast.value = "Введіть дані!"
+            editLogin.value == null || editLogin.value == "" -> _toast.value = "Введіть логін!"
+            editPassword.value == null || editPassword.value == "" -> _toast.value = "Введіть пароль!"
+            openSeeker.value == null || openEmployer.value == null -> _toast.value = "Дані введено не вірно!"
+            else -> _toast.value = "else"
+        }
+    }
+
+    private suspend fun getEmployerFromDatabase(login: String, password: String): Employer? {
         return withContext(Dispatchers.IO) {
-            val employer = database.getEmployer(login)
+            val employer = database.getEmployer(login, password)
 
             employer
         }
     }
 
-    private suspend fun getSeekerFromDatabase(login: String): Seeker? {
+    private suspend fun getSeekerFromDatabase(login: String, password: String): Seeker? {
         return withContext(Dispatchers.IO) {
-            val seeker = database.getSeeker(login)
+            val seeker = database.getSeeker(login, password)
 
             seeker
         }

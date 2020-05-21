@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.AdvertEmployerFragmentBinding
-import kotlinx.coroutines.flow.collect
 
 class AdvertEmployerFragment : Fragment() {
 
@@ -38,8 +37,8 @@ class AdvertEmployerFragment : Fragment() {
         binding.advertEmployerViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.employer.observe(viewLifecycleOwner, Observer {view ->
-                adapter.data = view
+        viewModel.employer.observe(viewLifecycleOwner, Observer { view ->
+            adapter.data = view
         })
 
         binding.floatingActionButton.setOnClickListener(

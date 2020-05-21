@@ -38,25 +38,3 @@ data class SeekerWithAdverts(
         )
         val advertList: List<Advert>
 )
-
-data class UserWithEmployers(
-        @Embedded
-        val user: User,
-        @Relation(
-                parentColumn = "employersId",
-                entity = Employer::class,
-                entityColumn = "employerId"
-        )
-        val employerList: List<Employer>
-)
-
-data class UserWithSeekers(
-        @Embedded
-        val user: User,
-        @Relation(
-                parentColumn = "seekersId",
-                entity = Seeker::class,
-                entityColumn = "seekerId"
-        )
-        val seekerList: List<Seeker>
-)
