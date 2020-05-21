@@ -19,5 +19,18 @@ data class Seeker(
         var loginSeeker: String = "",
         var password: String = ""
 )
+@Entity
+data class SessionSeeker(
+        @PrimaryKey(autoGenerate = true)
+        var sessionId: Long = 0L,
+        var seekerId: Long? = null
+)
+
+@Entity
+data class SessionEmployer(
+        @PrimaryKey(autoGenerate = true)
+        var sessionId: Long = 0L,
+        var employerId: Long? = null
+)
 
 

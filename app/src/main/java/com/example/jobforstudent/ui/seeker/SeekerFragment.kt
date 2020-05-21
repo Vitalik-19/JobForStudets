@@ -2,6 +2,7 @@ package com.example.jobforstudent.ui.seeker
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.jobforstudent.R
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.SeekerFragmentBinding
 
 class SeekerFragment : Fragment() {
@@ -21,13 +23,18 @@ class SeekerFragment : Fragment() {
         fun newInstance() = SeekerFragment()
     }
 
-    private lateinit var viewModel: SeekerViewModel
     private lateinit var binding: SeekerFragmentBinding
+    private lateinit var viewModel: SeekerViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.seeker_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(SeekerViewModel::class.java)
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = SeekerViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SeekerViewModel::class.java)
+
         binding.seekerFragmentViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -37,7 +44,7 @@ class SeekerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.seekerFragment)
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+        navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
             if (nd.id == R.id.searchFragment || nd.id == R.id.favoriteFragment
                     || nd.id == R.id.notificationsFragment || nd.id == R.id.profileSeekerFragment) {
                 binding.navViewSeeker.visibility = View.VISIBLE
@@ -46,5 +53,16 @@ class SeekerFragment : Fragment() {
             }
         }
         binding.navViewSeeker.setupWithNavController(navController)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = SeekerViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(SeekerViewModel::class.java)
+
+        viewModel.deleteSession()
     }
 }

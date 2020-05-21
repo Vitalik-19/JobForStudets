@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [Advert::class, Employer::class,
-    Seeker::class, AdvertsSeekers::class], version = 1, exportSchema = false)
+    Seeker::class,SessionEmployer::class,SessionSeeker::class, AdvertsSeekers::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     /**

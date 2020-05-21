@@ -17,6 +17,6 @@ data class Advert(
 
 @Entity(primaryKeys = ["seekerId", "observersId"])
 data class AdvertsSeekers(
-        val seekerId: Long,
-        val observersId: Long
+        var seekerId: Long,
+        var observersId: Long
 )

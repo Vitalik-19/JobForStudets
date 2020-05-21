@@ -32,6 +32,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteViewHolder>() {
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         holder.apply {
+            nameText.text = data[position].workName
+            locationText.text = data[position].location
 
         }
     }
