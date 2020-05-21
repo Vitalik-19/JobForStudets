@@ -12,6 +12,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.example.jobforstudent.R
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.EmployerFragmentBinding
 
 class EmployerFragment : Fragment() {
@@ -25,7 +26,10 @@ class EmployerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.employer_fragment, container, false)
-        viewModel = ViewModelProvider(this).get(EmployerViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = EmployerViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(EmployerViewModel::class.java)
         binding.employerViewModel = viewModel
         binding.lifecycleOwner = this
         return binding.root
@@ -34,7 +38,7 @@ class EmployerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.bottom_nav_fragment_employer)
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, args: Bundle? ->
+        navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
             if (nd.id == R.id.advertEmployerFragment || nd.id == R.id.profileEmployerFragment) {
                 binding.navViewEmployer.visibility = View.VISIBLE
             } else {
@@ -42,5 +46,16 @@ class EmployerFragment : Fragment() {
             }
         }
         binding.navViewEmployer.setupWithNavController(navController)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = EmployerViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(EmployerViewModel::class.java)
+
+        viewModel.deleteSession()
     }
 }

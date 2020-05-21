@@ -18,6 +18,12 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
+    var advertId: Long = 0L
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     private val bundle = Bundle()
 
     class SearchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,6 +50,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             salary.text = data[position].salary.toString()
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
+                advertId = data[position].advertId
             }
             itemView.setOnClickListener {
                 bundle.putLong("advertId", data[position].advertId)

@@ -40,6 +40,7 @@ class SearchFragment : Fragment() {
                 adapter.data = it
             }
         })
+        viewModel.advertId.value = adapter.advertId
 
         binding.button.setOnClickListener {
             //TODO search

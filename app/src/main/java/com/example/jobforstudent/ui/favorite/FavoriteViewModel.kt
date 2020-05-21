@@ -18,7 +18,7 @@ class FavoriteViewModel(val database: UserDatabaseDao, application: Application)
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var favoriteAdverts = MutableLiveData<Advert>()
+    private var favoriteAdverts = MutableLiveData<List<Advert>>()
 
     init {
         initializeCreateAdvert()
@@ -26,7 +26,7 @@ class FavoriteViewModel(val database: UserDatabaseDao, application: Application)
 
     private fun initializeCreateAdvert() {
         uiScope.launch {
-//            favoriteAdverts.value = getCreateAdvertFromDatabase()[0].advertList
+            favoriteAdverts.value = getCreateAdvertFromDatabase()[0].advertList
         }
     }
 
