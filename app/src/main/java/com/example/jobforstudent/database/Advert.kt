@@ -6,17 +6,17 @@ import androidx.room.PrimaryKey
 @Entity
 data class Advert(
         @PrimaryKey(autoGenerate = true)
-        var advertId: Long = 0L,
+        var advertId: Long = 0,
         var workName: String = "Work Name",
         var salary: Int = 0,
         var companyName: String = "Company Name",
         var location: String = "Location",
-        var observersId: Long = 0L,
+        var observersId: Long = 0,
         var ownerId: Long = 0L
 )
 
-@Entity(primaryKeys = ["seekerId", "observersId"])
+@Entity(primaryKeys = ["seekerId", "advertId"])
 data class AdvertsSeekers(
         var seekerId: Long,
-        var observersId: Long
+        var advertId: Long
 )

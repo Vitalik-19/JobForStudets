@@ -22,15 +22,15 @@ data class Seeker(
 @Entity
 data class SessionSeeker(
         @PrimaryKey(autoGenerate = true)
-        var sessionId: Long = 0L,
-        var seekerId: Long? = null
+        var sessionId: Long = 0,
+        var seekerId: Long = 0
 )
 
 @Entity
 data class SessionEmployer(
         @PrimaryKey(autoGenerate = true)
-        var sessionId: Long = 0L,
-        var employerId: Long? = null
+        var sessionId: Long = 0,
+        var employerId: Long = 0
 )
 
 

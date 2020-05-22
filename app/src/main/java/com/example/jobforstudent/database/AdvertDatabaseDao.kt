@@ -7,7 +7,7 @@ import androidx.room.*
 public interface AdvertDatabaseDao {
 
     // Добавление advert в бд
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(advert: Advert)
 
     // Удаление advert из бд
@@ -31,5 +31,8 @@ public interface AdvertDatabaseDao {
     @Transaction
     @Query("SELECT * FROM Advert")
     fun getAdvertWithSeekers(): List<AdvertWithSeekers>
+
+    @Query("SELECT * FROM SessionEmployer ORDER BY sessionId DESC LIMIT 1")
+    fun getSessionEmployer(): SessionEmployer?
 
 }

@@ -37,8 +37,10 @@ class AdvertEmployerFragment : Fragment() {
         binding.advertEmployerViewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.employer.observe(viewLifecycleOwner, Observer { view ->
-            adapter.data = view
+        viewModel.createAdvert.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
         })
 
         binding.floatingActionButton.setOnClickListener(

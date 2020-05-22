@@ -1,11 +1,13 @@
 package com.example.jobforstudent.ui.editadvert
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.jobforstudent.database.Advert
 import com.example.jobforstudent.database.AdvertDatabaseDao
+import com.example.jobforstudent.database.SessionEmployer
 import kotlinx.coroutines.*
 
 class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
@@ -18,7 +20,6 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
-    private var createAdvert = MutableLiveData<Advert?>()
 
     private val _editNameWork = MutableLiveData<String>()
     val editNameWork: LiveData<String>
@@ -36,13 +37,17 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
     val editSalary: LiveData<Int>
         get() = _editSalary
 
+    private var _sessionEmployer = MutableLiveData<Long>()
+    val sessionEmployer: LiveData<Long>
+        get() = _sessionEmployer
+
     init {
-        initializeCreateAdvert()
+        initializesessionEmployer()
     }
 
-    private fun initializeCreateAdvert() {
+    private fun initializesessionEmployer() {
         uiScope.launch {
-            createAdvert.value = getCreateAdvertFromDatabase()
+            _sessionEmployer.value = getSessionEmployerFromDatabase()?.employerId
         }
     }
 
@@ -55,13 +60,14 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
 
     fun onCreateAdvert() {
         uiScope.launch {
-            val newNight = Advert()
-            newNight.workName = editNameWork.value ?: ""
-            newNight.companyName = editCompanyName.value ?: ""
-            newNight.location = editLocation.value ?: ""
-            newNight.salary = editSalary.value ?: 0
-            insert(newNight)
-            createAdvert.value = getCreateAdvertFromDatabase()
+            Log.i("employer", "sessionEmployer = " + sessionEmployer.value.toString())
+            val newAdvert = Advert()
+            newAdvert.workName = editNameWork.value ?: ""
+            newAdvert.companyName = editCompanyName.value ?: ""
+            newAdvert.location = editLocation.value ?: ""
+            newAdvert.salary = editSalary.value ?: 0
+            sessionEmployer.value?.let { newAdvert.ownerId = it }
+            insert(newAdvert)
         }
     }
 
@@ -81,6 +87,13 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
     private suspend fun update(advert: Advert) {
         withContext(Dispatchers.IO) {
             database.update(advert)
+        }
+    }
+
+    private suspend fun getSessionEmployerFromDatabase(): SessionEmployer? {
+        return withContext(Dispatchers.IO) {
+            val session = database.getSessionEmployer()
+            session
         }
     }
 

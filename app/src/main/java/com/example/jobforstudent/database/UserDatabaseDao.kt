@@ -4,67 +4,76 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-public interface UserDatabaseDao {
+public abstract class UserDatabaseDao {
 
     @Insert
-    fun insertEmployer(employer: Employer)
+    abstract fun insertEmployer(employer: Employer)
 
     @Insert
-    fun insertSeeker(seeker: Seeker)
+    abstract fun insertEmployerId(employer: Employer): Long
 
     @Insert
-    fun insertAdvert(advert: Advert)
+    abstract fun insertSeeker(seeker: Seeker)
+
+    @Insert
+    abstract fun insertAdvert(advert: Advert)
+
+    @Insert
+    abstract fun insertAdverts(adverts: List<Advert>)
+
+    @Insert
+    abstract fun insertSessionSeeker(session: SessionSeeker)
+
+    @Insert
+    abstract fun insertSessionEmployer(session: SessionEmployer)
 
     @Update
-    fun updateAdvert(advert: Advert)
+    abstract fun updateAdvert(advert: Advert)
 
-    @Insert
-    fun insertSessionSeeker(session: SessionSeeker)
-
-    @Insert
-    fun insertSessionEmployer(session: SessionEmployer)
+    @Update
+    abstract fun updateAdverts(adverts: List<Advert>)
 
     @Query("DELETE FROM SessionSeeker")
-    fun deleteSessionSeeker()
+    abstract fun deleteSessionSeeker()
 
     @Query("DELETE FROM SessionEmployer")
-    fun deleteSessionEmployer()
+    abstract fun deleteSessionEmployer()
 
     @Query("SELECT * FROM SessionSeeker ORDER BY sessionId DESC LIMIT 1")
-    fun getSessionSeeker(): SessionSeeker?
+    abstract fun getSessionSeeker(): SessionSeeker?
 
     @Query("SELECT * FROM SessionEmployer ORDER BY sessionId DESC LIMIT 1")
-    fun getSessionEmployer(): SessionEmployer?
+    abstract fun getSessionEmployer(): SessionEmployer?
 
     @Query("SELECT * FROM Employer")
-    fun getAllEmployer(): LiveData<List<Employer>>
+    abstract fun getAllEmployer(): LiveData<List<Employer>>
 
     @Query("SELECT * FROM Employer WHERE loginEmployer = :login AND password = :password")
-    fun getEmployer(login: String, password: String): Employer?
+    abstract fun getEmployer(login: String, password: String): Employer?
 
-    @Query("SELECT * FROM Seeker")
-    fun getAllSeeker(): LiveData<List<Seeker>>
+    @Query("SELECT * FROM Employer WHERE employerId = :key")
+    abstract fun getEmployerById(key: Long): Employer?
 
     @Query("SELECT * FROM Seeker WHERE loginSeeker = :login AND password = :password")
-    fun getSeeker(login: String, password: String): Seeker?
+    abstract fun getSeeker(login: String, password: String): Seeker?
 
     @Transaction
-    @Query("SELECT * FROM Employer")
-    fun getEmployerWithAdverts(): LiveData<List<EmployerWithAdverts>>
+    @Query("SELECT * FROM Employer WHERE employerId = :key")
+    abstract fun getEmployerWithAdverts(key: Long): EmployerWithAdverts?
 
     @Transaction
     @Query("SELECT * FROM Seeker")
-    fun getSeekerWithAdverts(): List<SeekerWithAdverts>
+    abstract fun getSeekerWithAdverts(): List<SeekerWithAdverts>
 
     @Transaction
-    fun getInsertSeekerWithAdverts(seeker: Seeker, advert: Advert) {
-        insertSeeker(seeker)
-        insertAdvert(advert)
+    @Insert
+    fun insertEmployerWithAdverts(employer: Employer, adverts: List<Advert>) {
+        insertCrateAdverts(employer, adverts)
     }
 
-    @Transaction
-    fun getUpdateObservableAdverts(advert: Advert) {
-        updateAdvert(advert)
+    fun insertCrateAdverts(employer: Employer, adverts: List<Advert>) {
+        adverts.forEach {
+            insertAdvert(it)
+        }
     }
-
 }
