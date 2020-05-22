@@ -8,22 +8,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
-import com.example.jobforstudent.database.Employer
+import com.example.jobforstudent.database.Advert
 
 class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertEmployerViewHolder>() {
 
-    var data = listOf<Employer>()
+    var data = listOf<Advert>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    //    var adverts = data[0].advertList
     private val bundle = Bundle()
-
-    init {
-//    data[0].employer.employerId = 0L
-    }
 
     class AdvertEmployerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameWorkText: TextView = itemView.findViewById(R.id.item_advert_owners_work_name_text)
@@ -43,19 +38,18 @@ class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertE
 
     override fun onBindViewHolder(holder: AdvertEmployerViewHolder, position: Int) {
         holder.apply {
-            //todo output data
-            nameWorkText.text = data[position].loginEmployer
-            companyNameText.text = data[position].password
-//            locationText.text = data[position].location
-//            salary.text = data[position].salary.toString()
+            nameWorkText.text = data[position].workName
+            companyNameText.text = data[position].companyName
+            locationText.text = data[position].location
+            salary.text = data[position].salary.toString()
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
             }
             itemView.setOnClickListener {
-//                bundle.putLong("advertId", data[position].advertId)
-//                it.findNavController().navigate(R.id.action_searchFragment_to_workFragment, bundle)
+                bundle.putLong("advertId", data[position].advertId)
+                //TODO action
+                //it.findNavController().navigate(R.id.action_searchFragment_to_workFragment, bundle)
             }
         }
     }
-
 }

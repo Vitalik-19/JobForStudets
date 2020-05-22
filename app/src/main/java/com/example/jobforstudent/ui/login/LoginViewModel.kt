@@ -49,12 +49,8 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
     private val positionBool: LiveData<Boolean>
         get() = _positionBool
 
-    private var sessionEmployerId = MutableLiveData<SessionEmployer?>()
-    private var sessionSeekerId = MutableLiveData<SessionSeeker?>()
-
     init {
-        initializeCreateSessionSeeker()
-        initializeCreateSessionEmployer()
+        initializeCreateSession()
         _positionBool.value = true
         _employerNavigationEvent.value = false
         _seekerNavigationEvent.value = false
@@ -71,8 +67,9 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
                     getEmployerFromDatabase(it1, it).let { it2 -> _openEmployer.value = it2 }
                 }
             }
-            when (openEmployer.value) {
+            when (openEmployer.value?.employerId) {
                 null -> onToastSignIn()
+                -1L -> onToastSignIn()
                 else -> {
                     val newSessionEmployer = SessionEmployer()
                     newSessionEmployer.employerId = openEmployer.value!!.employerId
@@ -90,8 +87,9 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
                     getSeekerFromDatabase(it1, it).let { it2 -> _openSeeker.value = it2 }
                 }
             }
-            when (openSeeker.value) {
+            when (openSeeker.value?.seekerId) {
                 null -> onToastSignIn()
+                -1L -> onToastSignIn()
                 else -> {
                     val newSessionSeeker = SessionSeeker()
                     newSessionSeeker.seekerId = openSeeker.value!!.seekerId
@@ -102,20 +100,14 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
         }
     }
 
-    private fun initializeCreateSessionSeeker() {
+    private fun initializeCreateSession() {
         uiScope.launch {
-            sessionSeekerId.value = getSessionSeekerFromDatabase()
+            _toast.value = getSessionEmployerFromDatabase()?.employerId.toString()
             when {
-                sessionSeekerId.value?.seekerId != null -> _seekerNavigationEvent.value = true
-            }
-        }
-    }
-
-    private fun initializeCreateSessionEmployer() {
-        uiScope.launch {
-            sessionEmployerId.value = getSessionEmployerFromDatabase()
-            when {
-                sessionEmployerId.value != null -> _employerNavigationEvent.value = true
+                getSessionSeekerFromDatabase()?.seekerId != null ->
+                    _seekerNavigationEvent.value = true
+                getSessionEmployerFromDatabase()?.employerId != null ->
+                    _employerNavigationEvent.value = true
             }
         }
     }
@@ -172,15 +164,15 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
         }
     }
 
-    private suspend fun insertSessionEmployer(session: SessionEmployer) {
+    private suspend fun insertSessionEmployer(sessionEmployer: SessionEmployer) {
         withContext(Dispatchers.IO) {
-            database.insertSessionEmployer(session)
+            database.insertSessionEmployer(sessionEmployer)
         }
     }
 
-    private suspend fun insertSessionSeeker(session: SessionSeeker) {
+    private suspend fun insertSessionSeeker(sessionSeeker: SessionSeeker) {
         withContext(Dispatchers.IO) {
-            database.insertSessionSeeker(session)
+            database.insertSessionSeeker(sessionSeeker)
         }
     }
 }

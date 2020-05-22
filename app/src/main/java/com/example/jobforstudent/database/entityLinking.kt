@@ -19,7 +19,7 @@ data class AdvertWithSeekers(
         @Embedded
         val advert: Advert,
         @Relation(
-                parentColumn = "observersId",
+                parentColumn = "advertId",
                 entity = Seeker::class,
                 entityColumn = "seekerId",
                 associateBy = Junction(AdvertsSeekers::class)
@@ -33,7 +33,7 @@ data class SeekerWithAdverts(
         @Relation(
                 parentColumn = "seekerId",
                 entity = Advert::class,
-                entityColumn = "observersId",
+                entityColumn = "advertId",
                 associateBy = Junction(AdvertsSeekers::class)
         )
         val advertList: List<Advert>

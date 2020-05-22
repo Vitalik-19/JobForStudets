@@ -50,7 +50,6 @@ class EmployerFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         val application = requireNotNull(this.activity).application
         val dataSource = AppDatabase.getInstance(application).userDatabaseDao
         val viewModelFactory = EmployerViewModelFactory(dataSource, application)
