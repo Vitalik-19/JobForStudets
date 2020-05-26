@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.jobforstudent.database.Advert
 import com.example.jobforstudent.database.AdvertDatabaseDao
+import com.example.jobforstudent.database.AdvertsSeekers
+import com.example.jobforstudent.database.SessionSeeker
 import kotlinx.coroutines.*
 
 class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
@@ -18,9 +20,34 @@ class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Appl
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
+    private val _actionFavoriteEnable = MutableLiveData<Boolean>()
+    val actionFavoriteEnable: LiveData<Boolean>
+        get() = _actionFavoriteEnable
+
     private var _advert = MutableLiveData<Advert>()
     val advert: LiveData<Advert>
         get() = _advert
+
+    private var _sessionSeeker = MutableLiveData<Long>()
+    val sessionSeeker: LiveData<Long>
+        get() = _sessionSeeker
+
+
+    init {
+        _actionFavoriteEnable.value = false
+        initializeSessionSeeker()
+    }
+
+    private fun onCreateAdvertsSeekers() {
+        uiScope.launch {
+
+            val advertsSeekers = AdvertsSeekers(
+                    sessionSeeker.value!!,
+                    advert.value!!.advertId
+            )
+            insertAdvertsSeekers(advertsSeekers)
+        }
+    }
 
     private suspend fun getCreateAdvertFromDatabase(id: Long): Advert? {
         return withContext(Dispatchers.IO) {
@@ -33,6 +60,29 @@ class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Appl
     fun initializeAdvert(id: Long) {
         uiScope.launch {
             _advert.value = getCreateAdvertFromDatabase(id)
+        }
+    }
+
+    fun initializeActionFavoriteEnable() {
+        onCreateAdvertsSeekers()
+    }
+
+    private fun initializeSessionSeeker() {
+        uiScope.launch {
+            _sessionSeeker.value = getSessionSeekerFromDatabase()?.seekerId
+        }
+    }
+
+    private suspend fun getSessionSeekerFromDatabase(): SessionSeeker? {
+        return withContext(Dispatchers.IO) {
+            val session = database.getSessionSeeker()
+            session
+        }
+    }
+
+    private suspend fun insertAdvertsSeekers(advertsSeekers: AdvertsSeekers) {
+        return withContext(Dispatchers.IO) {
+            database.insertAdvertsSeekers(advertsSeekers)
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example.jobforstudent.ui.workInfoSeeker
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -21,6 +20,7 @@ class WorkInfoSeekerFragment : Fragment() {
     }
 
     private lateinit var binding: WorkInfoSeekerFragmentBinding
+    private lateinit var viewModel: WorkInfoSeekerViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -29,7 +29,7 @@ class WorkInfoSeekerFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val dataSource = AppDatabase.getInstance(application).advertDatabaseDao
         val viewModelFactory = WorkInfoSeekerViewModelFactory(dataSource, application)
-        val viewModel = ViewModelProvider(this, viewModelFactory).get(WorkInfoSeekerViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(WorkInfoSeekerViewModel::class.java)
 
         binding.workInfoSeekerViewModel = viewModel
         binding.lifecycleOwner = this
@@ -45,18 +45,10 @@ class WorkInfoSeekerFragment : Fragment() {
         return binding.root
     }
 
-    override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_favorite -> {
-            // User chose the "Favorite" action, mark the current item
-            // as a favorite...
-            true
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<View>(R.id.action_favorite).setOnClickListener {
+            viewModel.initializeActionFavoriteEnable()
         }
-
-        else -> {
-            // If we got here, the user's action was not recognized.
-            // Invoke the superclass to handle it.
-            super.onOptionsItemSelected(item)
-        }
+        super.onViewCreated(view, savedInstanceState)
     }
-
 }
