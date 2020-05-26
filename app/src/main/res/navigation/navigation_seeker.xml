@@ -31,7 +31,7 @@
         tools:layout="@layout/notifications_fragment" />
     <fragment
         android:id="@+id/workFragment"
-        android:name="com.example.jobforstudent.ui.work.WorkFragment"
+        android:name="com.example.jobforstudent.ui.workInfoSeeker.WorkInfoSeekerFragment"
         android:label="WorkFragment"
-        tools:layout="@layout/work_fragment" />
+        tools:layout="@layout/work_info_seeker_fragment" />
 </navigation>

@@ -1,17 +1,17 @@
-package com.example.jobforstudent.ui.work
+package com.example.jobforstudent.ui.workInfoSeeker
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.jobforstudent.database.AdvertDatabaseDao
 
-class WorkViewModelFactory(
+class WorkInfoSeekerViewModelFactory(
         private val dataSource: AdvertDatabaseDao,
         private val application: Application) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(WorkViewModel::class.java)) {
-            return WorkViewModel(dataSource, application) as T
+        if (modelClass.isAssignableFrom(WorkInfoSeekerViewModel::class.java)) {
+            return WorkInfoSeekerViewModel(dataSource, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

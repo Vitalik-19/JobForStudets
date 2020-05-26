@@ -1,4 +1,4 @@
-package com.example.jobforstudent.ui.work
+package com.example.jobforstudent.ui.workInfoSeeker
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -8,7 +8,7 @@ import com.example.jobforstudent.database.Advert
 import com.example.jobforstudent.database.AdvertDatabaseDao
 import kotlinx.coroutines.*
 
-class WorkViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
+class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
     private var viewModelJob = Job()
 
     override fun onCleared() {

@@ -53,14 +53,9 @@ class LoginFragment : Fragment() {
                 }
             })
         }
-
-        //todo button navigation to employer fragment
+        //todo in view model
         binding.loginFragmentRegistrationButton.setOnClickListener(
                 Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registrationFragment))
-
-        //todo delete the Back button
-        binding.button.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_employerFragment))
 
         return binding.root
     }
