@@ -35,4 +35,9 @@ public interface AdvertDatabaseDao {
     @Query("SELECT * FROM SessionEmployer ORDER BY sessionId DESC LIMIT 1")
     fun getSessionEmployer(): SessionEmployer?
 
+    @Query("SELECT * FROM SessionSeeker ORDER BY sessionId DESC LIMIT 1")
+    fun getSessionSeeker(): SessionSeeker?
+
+    @Insert
+    fun insertAdvertsSeekers(advertsSeekers: AdvertsSeekers)
 }

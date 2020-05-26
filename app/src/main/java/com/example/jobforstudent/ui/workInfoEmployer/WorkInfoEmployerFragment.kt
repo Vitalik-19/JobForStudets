@@ -49,7 +49,12 @@ class WorkInfoEmployerFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-        R.id.action_favorite -> {
+        R.id.action_delete -> {
+            // User chose the "Favorite" action, mark the current item
+            // as a favorite...
+            true
+        }
+        R.id.action_edit -> {
             // User chose the "Favorite" action, mark the current item
             // as a favorite...
             true

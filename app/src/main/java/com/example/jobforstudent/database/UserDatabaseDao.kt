@@ -62,8 +62,8 @@ public abstract class UserDatabaseDao {
     abstract fun getEmployerWithAdverts(key: Long): EmployerWithAdverts?
 
     @Transaction
-    @Query("SELECT * FROM Seeker")
-    abstract fun getSeekerWithAdverts(): List<SeekerWithAdverts>
+    @Query("SELECT * FROM Seeker WHERE seekerId = :key")
+    abstract fun getSeekerWithAdverts(key: Long): SeekerWithAdverts?
 
     @Transaction
     @Insert
