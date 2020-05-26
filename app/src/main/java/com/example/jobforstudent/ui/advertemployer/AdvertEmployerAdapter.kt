@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.Advert
@@ -48,7 +49,7 @@ class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertE
             itemView.setOnClickListener {
                 bundle.putLong("advertId", data[position].advertId)
                 //TODO action
-                //it.findNavController().navigate(R.id.action_searchFragment_to_workFragment, bundle)
+                it.findNavController().navigate(R.id.action_advertEmployerFragment_to_workInfoEmployerFragment, bundle)
             }
         }
     }

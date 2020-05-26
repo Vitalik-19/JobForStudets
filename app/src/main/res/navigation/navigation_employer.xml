@@ -24,10 +24,24 @@
         <action
             android:id="@+id/action_advertEmployerFragment_to_editAdvertFragment"
             app:destination="@id/editAdvertFragment" />
+        <action
+            android:id="@+id/action_advertEmployerFragment_to_workInfoEmployerFragment"
+            app:destination="@id/workInfoEmployerFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileEmployerFragment"
         android:name="com.example.jobforstudent.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/workInfoEmployerFragment"
+        android:name="com.example.jobforstudent.ui.workInfoEmployer.WorkInfoEmployerFragment"
+        android:label="WorkInfoEmployerFragment"
+        tools:layout="@layout/work_info_employer_fragment" >
+        <action
+            android:id="@+id/action_workInfoEmployerFragment_to_advertEmployerFragment"
+            app:destination="@id/advertEmployerFragment"
+            app:popUpTo="@id/advertEmployerFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
