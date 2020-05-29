@@ -27,10 +27,9 @@ class FavoriteFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(FavoriteViewModel::class.java)
         val adapter = FavoriteAdapter()
 
-        binding.favoriteViewModel = viewModel
-        binding.lifecycleOwner = this
-
         binding.apply {
+            favoriteViewModel = viewModel
+            lifecycleOwner = this@FavoriteFragment
             favoriteFragmentRecyclerView.adapter = adapter
             favoriteFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
         }

@@ -64,16 +64,4 @@ public abstract class UserDatabaseDao {
     @Transaction
     @Query("SELECT * FROM Seeker WHERE seekerId = :key")
     abstract fun getSeekerWithAdverts(key: Long): SeekerWithAdverts?
-
-    @Transaction
-    @Insert
-    fun insertEmployerWithAdverts(employer: Employer, adverts: List<Advert>) {
-        insertCrateAdverts(employer, adverts)
-    }
-
-    fun insertCrateAdverts(employer: Employer, adverts: List<Advert>) {
-        adverts.forEach {
-            insertAdvert(it)
-        }
-    }
 }

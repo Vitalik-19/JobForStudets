@@ -32,10 +32,15 @@ class AdvertEmployerFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(AdvertEmployerViewModel::class.java)
         val adapter = AdvertEmployerAdapter()
 
-        binding.advertEmployerFragmentRecyclerView.adapter = adapter
-        binding.advertEmployerFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
-        binding.advertEmployerViewModel = viewModel
-        binding.lifecycleOwner = this
+        binding.apply {
+            advertEmployerFragmentRecyclerView.adapter = adapter
+            advertEmployerFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
+            advertEmployerViewModel = viewModel
+            lifecycleOwner = this@AdvertEmployerFragment
+            floatingActionButton.setOnClickListener(
+                    Navigation.createNavigateOnClickListener(R.id.action_advertEmployerFragment_to_editAdvertFragment)
+            )
+        }
 
         viewModel.createAdvert.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -43,9 +48,6 @@ class AdvertEmployerFragment : Fragment() {
             }
         })
 
-        binding.floatingActionButton.setOnClickListener(
-                Navigation.createNavigateOnClickListener(R.id.action_advertEmployerFragment_to_editAdvertFragment)
-        )
 
         return binding.root
     }

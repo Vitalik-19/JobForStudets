@@ -42,10 +42,10 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
         get() = _sessionEmployer
 
     init {
-        initializesessionEmployer()
+        initializeSessionEmployer()
     }
 
-    private fun initializesessionEmployer() {
+    private fun initializeSessionEmployer() {
         uiScope.launch {
             _sessionEmployer.value = getSessionEmployerFromDatabase()?.employerId
         }

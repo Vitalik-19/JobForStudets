@@ -18,6 +18,7 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
     }
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
     private var createAdvert = MutableLiveData<Advert?>()
     val adverts = database.getAllAdvert()
     var advertId = MutableLiveData<Long>()
@@ -39,17 +40,7 @@ class SearchViewModel(val database: AdvertDatabaseDao, application: Application)
     private suspend fun getCreateAdvertFromDatabase(): Advert? {
         return withContext(Dispatchers.IO) {
             val advert = database.getCreateAdvert()
-
             advert
         }
     }
-
-    private suspend fun getCreateAdvertsFromDatabase(key: Long): Advert? {
-        return withContext(Dispatchers.IO) {
-            val adverts = database.get(key)
-
-            adverts
-        }
-    }
-
 }
