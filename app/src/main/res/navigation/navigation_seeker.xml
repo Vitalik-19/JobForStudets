@@ -9,7 +9,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.jobforstudent.ui.favorite.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/favorite_fragment" />
+        tools:layout="@layout/favorite_fragment" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_workFragment"
+            app:destination="@id/workFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.example.jobforstudent.ui.search.SearchFragment"

@@ -13,27 +13,30 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
         tools:context=".ui.advertemployer.AdvertEmployerFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Тут буде список оголошень роботодавця"
+                android:text="Створенні оголошення:"
+                android:layout_margin="15dp"
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/advert_employer_fragment_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:itemCount="40" />
+                tools:itemCount="10"
+                tools:listitem="@layout/item_advert_owners" />
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -41,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:layout_margin="20dp"
             android:clickable="true"
             android:tint="#FFFFFF"
             app:srcCompat="@android:drawable/ic_input_add" />

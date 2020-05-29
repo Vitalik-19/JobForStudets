@@ -32,7 +32,6 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
         var locationText: TextView = itemView.findViewById(R.id.item_advert_location_text)
         var salary: TextView = itemView.findViewById(R.id.item_advert_salary_text)
         val favoriteImage: ImageView = itemView.findViewById(R.id.item_advert_favorite_image)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {

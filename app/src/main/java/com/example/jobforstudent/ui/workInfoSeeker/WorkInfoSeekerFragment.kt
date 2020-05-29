@@ -39,7 +39,10 @@ class WorkInfoSeekerFragment : Fragment() {
         viewModel.advert.observe(viewLifecycleOwner, Observer {
             it.let {
                 //Todo output data
-                binding.name.text = it.workName
+                binding.workInfoSeekerNameWorkText.text = it.workName
+                binding.workInfoSeekerSalaryText.text = it.salary.toString()
+                binding.workInfoSeekerCompanyNameText.text = it.companyName
+                binding.workInfoSeekerLocationText.text = it.location
             }
         })
         return binding.root

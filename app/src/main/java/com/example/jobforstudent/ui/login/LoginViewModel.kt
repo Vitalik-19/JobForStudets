@@ -102,7 +102,6 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
 
     private fun initializeCreateSession() {
         uiScope.launch {
-            _toast.value = getSessionEmployerFromDatabase()?.employerId.toString()
             when {
                 getSessionSeekerFromDatabase()?.seekerId != null ->
                     _seekerNavigationEvent.value = true
