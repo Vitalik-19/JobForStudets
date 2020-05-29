@@ -76,11 +76,19 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/work_info_employer_note_text"
+                    android:id="@+id/work_info_employer_phone_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phone"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/work_info_employer_description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="note"
+                    android:text="description"
                     android:textAlignment="textStart"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"

@@ -48,7 +48,6 @@ class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertE
             }
             itemView.setOnClickListener {
                 bundle.putLong("advertId", data[position].advertId)
-                //TODO action
                 it.findNavController().navigate(R.id.action_advertEmployerFragment_to_workInfoEmployerFragment, bundle)
             }
         }

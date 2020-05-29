@@ -75,7 +75,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/work_info_seeker_note_text"
+                    android:id="@+id/work_info_seeker_description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -84,6 +84,18 @@
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
                     tools:text="@tools:sample/lorem/random" />
+
+                <ImageView
+                    android:id="@+id/work_info_seeker_call_button"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/colorAccent"
+                    android:padding="10dp"
+                    android:tint="#FFFFFF"
+                    app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
             </LinearLayout>
         </ScrollView>

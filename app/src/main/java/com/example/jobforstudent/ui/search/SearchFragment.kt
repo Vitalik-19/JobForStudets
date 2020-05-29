@@ -26,25 +26,30 @@ class SearchFragment : Fragment() {
         val viewModel = ViewModelProvider(this, viewModelFactory).get(SearchViewModel::class.java)
         val adapter = SearchAdapter()
 
-        binding.searchFragmentRecyclerView.adapter = adapter
-        binding.searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
-        binding.searchViewModel = viewModel
-        binding.lifecycleOwner = this
-        viewModel.navigateToAdvert.observe(viewLifecycleOwner, Observer {
-            it?.let {
-
+        binding.apply {
+            binding.searchFragmentRecyclerView.adapter = adapter
+            binding.searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
+            binding.searchViewModel = viewModel
+            binding.lifecycleOwner = this@SearchFragment
+            binding.button.setOnClickListener {
+                //TODO search
             }
-        })
-        viewModel.adverts.observe(viewLifecycleOwner, Observer {
-            it?.let {
-                adapter.data = it
-            }
-        })
-        viewModel.advertId.value = adapter.advertId
-
-        binding.button.setOnClickListener {
-            //TODO search
         }
+
+        viewModel.apply {
+            navigateToAdvert.observe(viewLifecycleOwner, Observer {
+                it?.let {
+
+                }
+            })
+            adverts.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    adapter.data = it
+                }
+            })
+            advertId.value = adapter.advertId
+        }
+
         return binding.root
     }
 }

@@ -38,16 +38,18 @@ class WorkInfoEmployerFragment : Fragment() {
 
         viewModel.advert.observe(viewLifecycleOwner, Observer {
             it.let {
-                //Todo output data
                 binding.workInfoEmployerNameWorkText.text = it.workName
                 binding.workInfoEmployerSalaryText.text = it.salary.toString()
                 binding.workInfoEmployerCompanyNameText.text = it.companyName
                 binding.workInfoEmployerLocationText.text = it.location
+                binding.workInfoEmployerDescriptionText.text = it.description
+                binding.workInfoEmployerPhoneText.text = it.phone
             }
         })
         return binding.root
     }
 
+    //TODO
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
         R.id.action_delete -> {
             // User chose the "Favorite" action, mark the current item

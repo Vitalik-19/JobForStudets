@@ -1,5 +1,7 @@
 package com.example.jobforstudent.ui.workInfoSeeker
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +40,14 @@ class WorkInfoSeekerFragment : Fragment() {
 
         viewModel.advert.observe(viewLifecycleOwner, Observer {
             it.let {
-                //Todo output data
                 binding.workInfoSeekerNameWorkText.text = it.workName
                 binding.workInfoSeekerSalaryText.text = it.salary.toString()
                 binding.workInfoSeekerCompanyNameText.text = it.companyName
                 binding.workInfoSeekerLocationText.text = it.location
+                binding.workInfoSeekerDescriptionText.text = it.description
+                binding.workInfoSeekerCallButton.setOnClickListener { _ ->
+                    startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + it.phone)))
+                }
             }
         })
         return binding.root

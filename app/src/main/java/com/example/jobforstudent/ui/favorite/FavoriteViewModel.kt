@@ -25,19 +25,11 @@ class FavoriteViewModel(val database: UserDatabaseDao, application: Application)
         get() = _favoriteAdverts
 
     private var _sessionSeeker = MutableLiveData<Long>()
-    val sessionSeeker: LiveData<Long>
+    private val sessionSeeker: LiveData<Long>
         get() = _sessionSeeker
 
     init {
         initializeCreateAdvert()
-    }
-
-
-    private suspend fun getSessionSeekerFromDatabase(): SessionSeeker? {
-        return withContext(Dispatchers.IO) {
-            val session = database.getSessionSeeker()
-            session
-        }
     }
 
     private fun initializeCreateAdvert() {
@@ -47,10 +39,16 @@ class FavoriteViewModel(val database: UserDatabaseDao, application: Application)
         }
     }
 
+    private suspend fun getSessionSeekerFromDatabase(): SessionSeeker? {
+        return withContext(Dispatchers.IO) {
+            val session = database.getSessionSeeker()
+            session
+        }
+    }
+
     private suspend fun getCreateAdvertFromDatabase(key: Long): SeekerWithAdverts? {
         return withContext(Dispatchers.IO) {
             val adverts = database.getSeekerWithAdverts(key)
-
             adverts
         }
     }

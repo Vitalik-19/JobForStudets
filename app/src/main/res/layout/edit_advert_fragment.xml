@@ -55,6 +55,27 @@
                 android:hint="Розташування"
                 android:inputType="textPersonName" />
 
+            <EditText
+                android:id="@+id/edit_advert_fragment_description_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="Детальний опис"
+                android:inputType="textMultiLine"
+                android:textColor="@android:color/black"
+                android:textSize="21sp" />
+
+            <EditText
+                android:id="@+id/edit_advert_fragment_phone_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Номер телефону"
+                android:inputType="phone"
+                android:textColor="@android:color/black"
+                android:textSize="21sp" />
+
             <Button
                 android:id="@+id/edit_advert_fragment_add_button"
                 style="@style/Widget.AppCompat.Button.Colored"
