@@ -12,9 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.WorkInfoEmployerFragmentBinding
-import com.example.jobforstudent.databinding.WorkInfoSeekerFragmentBinding
-import com.example.jobforstudent.ui.workInfoSeeker.WorkInfoSeekerViewModel
-import com.example.jobforstudent.ui.workInfoSeeker.WorkInfoSeekerViewModelFactory
 
 
 class WorkInfoEmployerFragment : Fragment() {
@@ -26,7 +23,7 @@ class WorkInfoEmployerFragment : Fragment() {
     private lateinit var binding: WorkInfoEmployerFragmentBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.work_info_employer_fragment, container, false)
 
         val application = requireNotNull(this.activity).application
@@ -42,7 +39,10 @@ class WorkInfoEmployerFragment : Fragment() {
         viewModel.advert.observe(viewLifecycleOwner, Observer {
             it.let {
                 //Todo output data
-                binding.name.text = it.workName
+                binding.workInfoEmployerNameWorkText.text = it.workName
+                binding.workInfoEmployerSalaryText.text = it.salary.toString()
+                binding.workInfoEmployerCompanyNameText.text = it.companyName
+                binding.workInfoEmployerLocationText.text = it.location
             }
         })
         return binding.root

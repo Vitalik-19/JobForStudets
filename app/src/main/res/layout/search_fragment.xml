@@ -47,7 +47,8 @@
             android:id="@+id/search_fragment_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:itemCount="40" />
+            tools:itemCount="40"
+            tools:listitem="@layout/item_advert" />
 
     </LinearLayout>
 </layout>
