@@ -1,69 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-
-        <variable
-            name="advertViewModel"
-            type="com.example.jobforstudent.ui.AdvertViewModel" />
-    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="15dp"
+    android:background="@drawable/item_background"
+    android:orientation="vertical"
+    android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/item_background"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent"
+        android:background="@drawable/item_text_border_bottom"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/item_advert_work_name_text"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@drawable/item_text_border_bottom"
-            android:orientation="horizontal">
+            android:layout_weight="2"
+            android:gravity="center_vertical"
+            android:text="Android-developer"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/item_advert_work_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:gravity="center_vertical"
-                android:text="Android-developer"
-                android:textColor="@android:color/black"
-                android:textSize="24sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/item_advert_favorite_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:tint="#FF9800"
-                app:srcCompat="@drawable/ic_favorite_black_24dp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/item_advert_salary_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/item_advert_favorite_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_weight="1"
-            android:text="від 15000₴ до 40000₴"
-            android:textColor="#F00" />
-
-        <TextView
-            android:id="@+id/item_advert_company_name_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Company"
-            android:textColor="@android:color/black" />
-
-        <TextView
-            android:id="@+id/item_advert_location_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="м. Вінниця" />
-
+            android:tint="#FF9800"
+            app:srcCompat="@drawable/ic_favorite_black_24dp" />
     </LinearLayout>
-</layout>
+
+    <TextView
+        android:id="@+id/item_advert_salary_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="від 15000₴ до 40000₴"
+        android:textColor="#F00" />
+
+    <TextView
+        android:id="@+id/item_advert_company_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Company"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_advert_location_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="м. Вінниця" />
+
+</LinearLayout>
