@@ -31,7 +31,9 @@ class EditAdvertFragment : Fragment() {
                     binding.editAdvertFragmentNameWorkEditText.text.toString(),
                     binding.editAdvertFragmentCompanyEditText.text.toString(),
                     binding.editAdvertFragmentLocationEditText.text.toString(),
-                    binding.editAdvertFragmentSalaryEditText.text.toString().toInt()
+                    binding.editAdvertFragmentSalaryEditText.text.toString().toInt(),
+                    binding.editAdvertFragmentDescriptionEditText.text.toString(),
+                    binding.editAdvertFragmentPhoneEditText.text.toString()
             )
             viewModel.onCreateAdvert()
             view.findNavController().navigate(R.id.action_editAdvertFragment_to_advertEmployerFragment)

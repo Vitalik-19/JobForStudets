@@ -11,6 +11,8 @@ data class Advert(
         var salary: Int = 0,
         var companyName: String = "Company Name",
         var location: String = "Location",
+        var description: String = "Description",
+        var phone: String = "",
         var observersId: Long = 0,
         var ownerId: Long = 0L
 )

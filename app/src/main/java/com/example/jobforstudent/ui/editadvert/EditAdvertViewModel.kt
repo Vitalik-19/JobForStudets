@@ -37,6 +37,14 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
     val editSalary: LiveData<Int>
         get() = _editSalary
 
+    private val _editDescription = MutableLiveData<String>()
+    val editDescription: LiveData<String>
+        get() = _editDescription
+
+    private val _editPhone = MutableLiveData<String>()
+    val editPhone: LiveData<String>
+        get() = _editPhone
+
     private var _sessionEmployer = MutableLiveData<Long>()
     val sessionEmployer: LiveData<Long>
         get() = _sessionEmployer
@@ -66,16 +74,20 @@ class EditAdvertViewModel(val database: AdvertDatabaseDao, application: Applicat
             newAdvert.companyName = editCompanyName.value ?: ""
             newAdvert.location = editLocation.value ?: ""
             newAdvert.salary = editSalary.value ?: 0
+            newAdvert.description = editDescription.value ?: ""
+            newAdvert.phone = editPhone.value ?: ""
             sessionEmployer.value?.let { newAdvert.ownerId = it }
             insert(newAdvert)
         }
     }
 
-    fun dataFilling(work: String, company: String, location: String, salary: Int) {
+    fun dataFilling(work: String, company: String, location: String, salary: Int, description: String, phone: String) {
         _editNameWork.value = work
         _editCompanyName.value = company
         _editLocation.value = location
         _editSalary.value = salary
+        _editDescription.value = description
+        _editPhone.value = phone
     }
 
     private suspend fun insert(advert: Advert) {
