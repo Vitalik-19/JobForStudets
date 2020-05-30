@@ -10,14 +10,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/item_text_border_bottom"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/item_advert_work_name_text"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="2"
             android:gravity="center_vertical"
             android:text="Android-developer"
