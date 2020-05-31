@@ -46,7 +46,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             nameWorkText.text = data[position].workName
             companyNameText.text = data[position].companyName
             locationText.text = data[position].location
-            salary.text = data[position].salary.toString()
+            salary.text = data[position].salary.toString().let { "$it грн." }
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
                 advertId = data[position].advertId

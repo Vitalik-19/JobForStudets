@@ -42,7 +42,7 @@ class AdvertEmployerAdapter : RecyclerView.Adapter<AdvertEmployerAdapter.AdvertE
             nameWorkText.text = data[position].workName
             companyNameText.text = data[position].companyName
             locationText.text = data[position].location
-            salary.text = data[position].salary.toString()
+            salary.text = data[position].salary.toString().let { "$it грн." }
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
             }

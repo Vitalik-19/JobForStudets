@@ -13,10 +13,15 @@
     <string name="button_search">Шукати</string>
 
     <!--login-->
-    <string name="login">Вхід</string>
+    <string name="sing_in">Увійти</string>
     <string name="registration">Реєстрація</string>
+    <string name="login">Логін</string>
+    <string name="Password">Пароль</string>
+
     <string name="list_advert">Мої оголошення</string>
     <string name="title_activity_employer">EmployerActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
+    <string name="seeker">Шукач</string>
+    <string name="employer">Замовник</string>
+    <string name="repeat_password">Повтор паролю</string>
+    <string name="to_register">Зареєструватись</string>
 </resources>

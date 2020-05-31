@@ -87,14 +87,13 @@
 
                 <ImageView
                     android:id="@+id/work_info_seeker_call_button"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
-                    android:background="@color/colorAccent"
                     android:padding="10dp"
-                    android:tint="#FFFFFF"
                     app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
             </LinearLayout>
