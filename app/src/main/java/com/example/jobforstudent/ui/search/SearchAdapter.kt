@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -11,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.Advert
 import com.example.jobforstudent.ui.search.SearchAdapter.SearchViewHolder
+import java.util.*
+import kotlin.collections.ArrayList
 
-class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
-    var data = listOf<Advert>()
+class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>(), Filterable {
+    var data = arrayListOf<Advert>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -23,6 +27,12 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
             field = value
             notifyDataSetChanged()
         }
+
+    var dataFilterList = ArrayList<Advert>()
+
+    init {
+        dataFilterList = data
+    }
 
     private val bundle = Bundle()
 
@@ -39,22 +49,51 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
         return SearchViewHolder(itemView)
     }
 
-    override fun getItemCount() = data.size
+    override fun getItemCount() = dataFilterList.size
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
         holder.apply {
-            nameWorkText.text = data[position].workName
-            companyNameText.text = data[position].companyName
-            locationText.text = data[position].location
-            salary.text = data[position].salary.toString().let { "$it грн." }
+            nameWorkText.text = dataFilterList[position].workName
+            companyNameText.text = dataFilterList[position].companyName
+            locationText.text = dataFilterList[position].location
+            salary.text = dataFilterList[position].salary.toString().let { "$it грн." }
             favoriteImage.setOnClickListener {
                 favoriteImage.setImageResource(R.drawable.ic_favorite_true_black_24dp)
-                advertId = data[position].advertId
+                advertId = dataFilterList[position].advertId
             }
             itemView.setOnClickListener {
-                bundle.putLong("advertId", data[position].advertId)
+                bundle.putLong("advertId", dataFilterList[position].advertId)
                 it.findNavController().navigate(R.id.action_searchFragment_to_workFragment, bundle)
             }
+        }
+    }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    dataFilterList = data
+                } else {
+                    val resultList = ArrayList<Advert>()
+                    for (row in data) {
+                        if (row.workName.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                            resultList.add(row)
+                        }
+                    }
+                    dataFilterList = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = dataFilterList
+                return filterResults
+            }
+
+            @Suppress("UNCHECKED_CAST")
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                dataFilterList = results?.values as ArrayList<Advert>
+                notifyDataSetChanged()
+            }
+
         }
     }
 }

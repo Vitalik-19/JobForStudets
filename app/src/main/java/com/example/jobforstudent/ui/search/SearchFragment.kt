@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -27,13 +28,25 @@ class SearchFragment : Fragment() {
         val adapter = SearchAdapter()
 
         binding.apply {
-            binding.searchFragmentRecyclerView.adapter = adapter
-            binding.searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
-            binding.searchViewModel = viewModel
-            binding.lifecycleOwner = this@SearchFragment
-            binding.button.setOnClickListener {
+            searchFragmentRecyclerView.adapter = adapter
+            searchFragmentRecyclerView.layoutManager = LinearLayoutManager(Fragment().context)
+            searchViewModel = viewModel
+            lifecycleOwner = this@SearchFragment
+            button.setOnClickListener {
                 //TODO search
             }
+            fragmentSearchSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+                override fun onQueryTextSubmit(s: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(s: String?): Boolean {
+                    adapter.filter.filter(s)
+                    return false
+                }
+
+            })
         }
 
         viewModel.apply {
@@ -44,7 +57,7 @@ class SearchFragment : Fragment() {
             })
             adverts.observe(viewLifecycleOwner, Observer {
                 it?.let {
-                    adapter.data = it
+                    adapter.data.addAll(it)
                 }
             })
             advertId.value = adapter.advertId

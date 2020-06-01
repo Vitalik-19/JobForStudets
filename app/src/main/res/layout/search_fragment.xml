@@ -17,6 +17,13 @@
         android:padding="10dp"
         tools:context=".ui.search.SearchFragment">
 
+        <SearchView
+            android:id="@+id/fragment_search_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="@string/vacancy" />
+
         <EditText
             android:id="@+id/fragment_search_edit_text_vacancy"
             style="@style/editTextStyle"
