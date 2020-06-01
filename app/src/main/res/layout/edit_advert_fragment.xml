@@ -27,7 +27,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Назва посади"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={editAdvertViewModel.editNameWork}" />
 
             <EditText
                 android:id="@+id/edit_advert_fragment_salary_edit_text"
@@ -36,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Зарплата"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="@={editAdvertViewModel.editSalary}" />
 
             <EditText
                 android:id="@+id/edit_advert_fragment_company_edit_text"
@@ -44,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Назва компанії"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={editAdvertViewModel.editCompanyName}" />
 
             <EditText
                 android:id="@+id/edit_advert_fragment_location_edit_text"
@@ -53,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="Розташування"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="@={editAdvertViewModel.editLocation}" />
 
             <EditText
                 android:id="@+id/edit_advert_fragment_description_edit_text"
@@ -63,6 +67,7 @@
                 android:gravity="start|top"
                 android:hint="Детальний опис"
                 android:inputType="textMultiLine"
+                android:text="@={editAdvertViewModel.editDescription}"
                 android:textColor="@android:color/black"
                 android:textSize="21sp" />
 
@@ -73,6 +78,7 @@
                 android:ems="10"
                 android:hint="Номер телефону"
                 android:inputType="phone"
+                android:text="@={editAdvertViewModel.editPhone}"
                 android:textColor="@android:color/black"
                 android:textSize="21sp" />
 

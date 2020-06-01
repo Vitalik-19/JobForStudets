@@ -15,6 +15,9 @@
             app:destination="@id/advertEmployerFragment"
             app:popUpTo="@id/advertEmployerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_editAdvertFragment_to_workInfoEmployerFragment"
+            app:destination="@id/workInfoEmployerFragment" />
     </fragment>
     <fragment
         android:id="@+id/advertEmployerFragment"
@@ -43,5 +46,8 @@
             app:destination="@id/advertEmployerFragment"
             app:popUpTo="@id/advertEmployerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_workInfoEmployerFragment_to_editAdvertFragment"
+            app:destination="@id/editAdvertFragment" />
     </fragment>
 </navigation>

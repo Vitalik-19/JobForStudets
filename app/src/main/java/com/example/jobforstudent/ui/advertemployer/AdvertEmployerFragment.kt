@@ -22,6 +22,7 @@ class AdvertEmployerFragment : Fragment() {
 
     private lateinit var viewModel: AdvertEmployerViewModel
     private lateinit var binding: AdvertEmployerFragmentBinding
+    private val adapter = AdvertEmployerAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.advert_employer_fragment, container, false)
@@ -30,7 +31,6 @@ class AdvertEmployerFragment : Fragment() {
         val dataSource = AppDatabase.getInstance(application).userDatabaseDao
         val viewModelFactory = AdvertEmployerViewModelFactory(dataSource, application)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(AdvertEmployerViewModel::class.java)
-        val adapter = AdvertEmployerAdapter()
 
         binding.apply {
             advertEmployerFragmentRecyclerView.adapter = adapter
