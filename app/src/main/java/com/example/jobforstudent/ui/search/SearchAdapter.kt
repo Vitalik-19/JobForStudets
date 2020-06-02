@@ -17,21 +17,25 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>(), Filterable {
-    var data = arrayListOf<Advert>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    var data = ArrayList<Advert>()
+    var workName = ""
+    var location = ""
+    var resultList = ArrayList<Advert>()
+
     var advertId: Long = 0L
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    var dataFilterList = ArrayList<Advert>()
+    var dataFilterList = data
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     init {
-        dataFilterList = data
+        //dataFilterList = data
     }
 
     private val bundle = Bundle()
@@ -72,13 +76,42 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>(), Filterable {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
+                if (workName == "" && location == "") {
                     dataFilterList = data
+                } else if (charSearch == workName) {
+                    //if (dataFilterList != resultList)
+                    resultList = ArrayList()
+                    for (row in data) {
+                        when (location) {
+                            "" -> {
+                                if (row.workName.toLowerCase(Locale.ROOT).contains(workName.toLowerCase(Locale.ROOT))) {
+                                    resultList.add(row)
+                                }
+                            }
+                            else -> {
+                                if (row.workName.toLowerCase(Locale.ROOT).contains(workName.toLowerCase(Locale.ROOT)) &&
+                                        row.location.toLowerCase(Locale.ROOT).contains(location.toLowerCase(Locale.ROOT))) {
+                                    resultList.add(row)
+                                }
+                            }
+                        }
+                    }
+                    dataFilterList = resultList
                 } else {
                     val resultList = ArrayList<Advert>()
                     for (row in data) {
-                        if (row.workName.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
-                            resultList.add(row)
+                        when (workName) {
+                            "" -> {
+                                if (row.location.toLowerCase(Locale.ROOT).contains(location.toLowerCase(Locale.ROOT))) {
+                                    resultList.add(row)
+                                }
+                            }
+                            else -> {
+                                if (row.workName.toLowerCase(Locale.ROOT).contains(workName.toLowerCase(Locale.ROOT)) &&
+                                        row.location.toLowerCase(Locale.ROOT).contains(location.toLowerCase(Locale.ROOT))) {
+                                    resultList.add(row)
+                                }
+                            }
                         }
                     }
                     dataFilterList = resultList
@@ -90,7 +123,9 @@ class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>(), Filterable {
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                dataFilterList = results?.values as ArrayList<Advert>
+                //todo fix
+                if (results?.values != null)
+                    dataFilterList = results.values as ArrayList<Advert>
                 notifyDataSetChanged()
             }
 

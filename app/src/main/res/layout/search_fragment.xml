@@ -14,46 +14,32 @@
         android:layout_height="match_parent"
         android:gravity="start"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
         tools:context=".ui.search.SearchFragment">
 
         <SearchView
-            android:id="@+id/fragment_search_search_view"
+            android:id="@+id/fragment_search_search_view_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:iconifiedByDefault="false"
-            android:queryHint="@string/vacancy" />
+            android:queryHint="@string/vacancy"
+            android:searchIcon="@drawable/ic_vacancy_black_24dp" />
 
-        <EditText
-            android:id="@+id/fragment_search_edit_text_vacancy"
-            style="@style/editTextStyle"
+        <SearchView
+            android:id="@+id/fragment_search_search_view_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_vacancy_black_24dp"
-            android:hint="@string/vacancy" />
-
-        <EditText
-            android:id="@+id/fragment_search_edit_text_place"
-            style="@style/editTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_place_black_24dp"
-            android:hint="@string/place"
-            android:textSize="21sp" />
-
-        <Button
-            android:id="@+id/button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_search"
-            android:textAllCaps="false"
-            android:textSize="24sp" />
+            android:iconifiedByDefault="false"
+            android:queryHint="Місто"
+            android:searchIcon="@drawable/ic_place_black_24dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/search_fragment_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
             tools:itemCount="40"
             tools:listitem="@layout/item_advert" />
 
