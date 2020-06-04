@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Advert::class, Employer::class,
-    Seeker::class,SessionEmployer::class,SessionSeeker::class, AdvertsSeekers::class], version = 1, exportSchema = false)
+@Database(entities = [Advert::class, Employer::class, Seeker::class, SessionEmployer::class,
+    SessionSeeker::class, AdvertsSeekers::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
 
     /**
@@ -62,14 +62,12 @@ abstract class AppDatabase : RoomDatabase() {
                 // If instance is `null` make a new database instance.
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            context.applicationContext,
-                            AppDatabase::class.java,
-                            "advert_database"
-                    )
+                            context.applicationContext, AppDatabase::class.java, "advert_database.db")
                             // Wipes and rebuilds instead of migrating if no Migration object.
                             // Migration is not part of this lesson. You can learn more about
                             // migration with Room in this blog post:
                             // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
+                            .createFromAsset("database/App.db")
                             .fallbackToDestructiveMigration()
                             .build()
                     // Assign INSTANCE to the newly created database.

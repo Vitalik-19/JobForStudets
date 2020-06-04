@@ -39,7 +39,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteViewHolder>() {
             nameWorkText.text = data[position].workName
             companyNameText.text = data[position].companyName
             locationText.text = data[position].location
-            salary.text = data[position].salary.toString()
+            salary.text = data[position].salary.toString().let { "$it грн." }
             itemView.setOnClickListener {
                 bundle.putLong("advertId", data[position].advertId)
                 it.findNavController().navigate(R.id.action_favoriteFragment_to_workFragment, bundle)

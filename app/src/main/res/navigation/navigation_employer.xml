@@ -15,6 +15,9 @@
             app:destination="@id/advertEmployerFragment"
             app:popUpTo="@id/advertEmployerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_editAdvertFragment_to_workInfoEmployerFragment"
+            app:destination="@id/workInfoEmployerFragment" />
     </fragment>
     <fragment
         android:id="@+id/advertEmployerFragment"
@@ -29,10 +32,14 @@
             app:destination="@id/workInfoEmployerFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileEmployerFragment"
+        android:id="@+id/profileFragment"
         android:name="com.example.jobforstudent.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
     <fragment
         android:id="@+id/workInfoEmployerFragment"
         android:name="com.example.jobforstudent.ui.workInfoEmployer.WorkInfoEmployerFragment"
@@ -43,5 +50,13 @@
             app:destination="@id/advertEmployerFragment"
             app:popUpTo="@id/advertEmployerFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_workInfoEmployerFragment_to_editAdvertFragment"
+            app:destination="@id/editAdvertFragment" />
     </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.jobforstudent.MainActivity"
+        android:label="MainActivity"
+        tools:layout="@layout/activity_main"/>
 </navigation>

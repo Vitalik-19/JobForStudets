@@ -21,8 +21,7 @@
             style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Логін"
+            android:hint="@string/login"
             android:inputType="textPersonName"
             android:text="@={registrationViewModel.loginText}"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_password_edit_text"
@@ -38,8 +37,7 @@
             style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Пароль"
+            android:hint="@string/Password"
             android:text="@={registrationViewModel.passwordText}"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_repeat_password_edit_text"
             app:layout_constraintEnd_toEndOf="@+id/registration_fragment_login_edit_text"
@@ -51,8 +49,7 @@
             style="@style/editTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Повтор паролю"
+            android:hint="@string/repeat_password"
             android:text="@{registrationViewModel.passwordText}"
             app:layout_constraintBottom_toTopOf="@+id/registration_fragment_registration_button"
             app:layout_constraintEnd_toEndOf="@+id/registration_fragment_password_edit_text"
@@ -77,7 +74,7 @@
                 android:layout_weight="1"
                 android:checked="false"
                 android:onClick="@{() -> registrationViewModel.onPositionRadioButton(true)}"
-                android:text="Шукач" />
+                android:text="@string/seeker" />
 
             <RadioButton
                 android:id="@+id/registration_fragment_employer_radio_button"
@@ -85,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="@{() -> registrationViewModel.onPositionRadioButton(false)}"
-                android:text="Замовник" />
+                android:text="@string/employer" />
         </RadioGroup>
 
         <Button
@@ -95,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:onClick="@{() -> registrationViewModel.onAddUser()}"
-            android:text="Зареєструватись"
+            android:text="@string/to_register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

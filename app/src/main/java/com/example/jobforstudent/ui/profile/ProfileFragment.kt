@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.example.jobforstudent.R
+import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.ProfileFragmentBinding
 
 
@@ -19,18 +21,23 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: ProfileFragmentBinding
     private lateinit var viewModel: ProfileViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.profile_fragment, container, false)
-//        binding.profileFragmentLoginProfile.setOnClickListener(
-//                //TODO to make an account out
-//                Navigation.createNavigateOnClickListener(R.id.action_navigation_profile_to_loginFragment))
+        val application = requireNotNull(this.activity).application
+        val dataSource = AppDatabase.getInstance(application).userDatabaseDao
+        val viewModelFactory = ProfileViewModelFactory(dataSource, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ProfileViewModel::class.java)
+
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.profileFragmentExitProfile.setOnClickListener {
+            viewModel.deleteSession()
+            it.findNavController().navigate(R.id.action_profileFragment_to_mainActivity)
+            requireActivity().finish()
+        }
+        super.onViewCreated(view, savedInstanceState)
     }
-
 }

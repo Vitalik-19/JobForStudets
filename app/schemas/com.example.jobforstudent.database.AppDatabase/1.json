@@ -1,0 +1,225 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "7cd54b186628b8c651c1eb525c344123",
+    "entities": [
+      {
+        "tableName": "Advert",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`advertId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `workName` TEXT NOT NULL, `salary` INTEGER NOT NULL, `companyName` TEXT NOT NULL, `location` TEXT NOT NULL, `description` TEXT NOT NULL, `phone` TEXT NOT NULL, `observersId` INTEGER NOT NULL, `ownerId` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "advertId",
+            "columnName": "advertId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "workName",
+            "columnName": "workName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "salary",
+            "columnName": "salary",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "companyName",
+            "columnName": "companyName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "observersId",
+            "columnName": "observersId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ownerId",
+            "columnName": "ownerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "advertId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Employer",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`employerId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginEmployer` TEXT NOT NULL, `password` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "employerId",
+            "columnName": "employerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loginEmployer",
+            "columnName": "loginEmployer",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "employerId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Seeker",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`seekerId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `loginSeeker` TEXT NOT NULL, `password` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "seekerId",
+            "columnName": "seekerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "loginSeeker",
+            "columnName": "loginSeeker",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "seekerId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SessionEmployer",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sessionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `employerId` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "sessionId",
+            "columnName": "sessionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "employerId",
+            "columnName": "employerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sessionId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "SessionSeeker",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sessionId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `seekerId` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "sessionId",
+            "columnName": "sessionId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seekerId",
+            "columnName": "seekerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sessionId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "AdvertsSeekers",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`seekerId` INTEGER NOT NULL, `advertId` INTEGER NOT NULL, PRIMARY KEY(`seekerId`, `advertId`))",
+        "fields": [
+          {
+            "fieldPath": "seekerId",
+            "columnName": "seekerId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "advertId",
+            "columnName": "advertId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "seekerId",
+            "advertId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7cd54b186628b8c651c1eb525c344123')"
+    ]
+  }
+}

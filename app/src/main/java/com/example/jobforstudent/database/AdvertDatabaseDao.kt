@@ -11,8 +11,8 @@ public interface AdvertDatabaseDao {
     fun insert(advert: Advert)
 
     // Удаление advert из бд
-    @Query("DELETE FROM Advert")
-    fun clear()
+    @Query("DELETE FROM Advert WHERE advertId = :key")
+    fun clear(key: Long)
 
     // Обновление advert в бд
     @Update

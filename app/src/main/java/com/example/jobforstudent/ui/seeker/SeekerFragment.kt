@@ -43,15 +43,16 @@ class SeekerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.seekerFragment)
+        binding.navViewSeeker.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
-            if (nd.id == R.id.searchFragment || nd.id == R.id.favoriteFragment
-                    || nd.id == R.id.notificationsFragment || nd.id == R.id.profileSeekerFragment) {
-                binding.navViewSeeker.visibility = View.VISIBLE
-            } else {
-                binding.navViewSeeker.visibility = View.GONE
+            when (nd.id) {
+                R.id.searchFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.favoriteFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.notificationsFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.profileFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                else -> binding.navViewSeeker.visibility = View.GONE
             }
         }
-        binding.navViewSeeker.setupWithNavController(navController)
     }
 
     override fun onDestroy() {

@@ -50,10 +50,10 @@ class LoginViewModel(val database: UserDatabaseDao, application: Application) : 
         get() = _positionBool
 
     init {
-        initializeCreateSession()
         _positionBool.value = true
         _employerNavigationEvent.value = false
         _seekerNavigationEvent.value = false
+        initializeCreateSession()
     }
 
     fun onPositionRadioButton(boolean: Boolean) {

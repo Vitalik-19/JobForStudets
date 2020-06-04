@@ -9,7 +9,7 @@ import com.example.jobforstudent.database.AdvertDatabaseDao
 import kotlinx.coroutines.*
 
 class WorkInfoEmployerViewModel(val database: AdvertDatabaseDao, application: Application) :
-    AndroidViewModel(application) {
+        AndroidViewModel(application) {
     private var viewModelJob = Job()
 
     override fun onCleared() {
@@ -23,6 +23,18 @@ class WorkInfoEmployerViewModel(val database: AdvertDatabaseDao, application: Ap
     val advert: LiveData<Advert>
         get() = _advert
 
+    fun initializeAdvert(id: Long) {
+        uiScope.launch {
+            _advert.value = getCreateAdvertFromDatabase(id)
+        }
+    }
+
+    fun onDeleteAdvert() {
+        uiScope.launch {
+            deleteAdvert(advert.value!!.advertId)
+        }
+    }
+
     private suspend fun getCreateAdvertFromDatabase(id: Long): Advert? {
         return withContext(Dispatchers.IO) {
             val advert = database.get(id)
@@ -31,9 +43,9 @@ class WorkInfoEmployerViewModel(val database: AdvertDatabaseDao, application: Ap
         }
     }
 
-    fun initializeAdvert(id: Long) {
-        uiScope.launch {
-            _advert.value = getCreateAdvertFromDatabase(id)
+    private suspend fun deleteAdvert(key: Long) {
+        withContext(Dispatchers.IO) {
+            database.clear(key)
         }
     }
 }

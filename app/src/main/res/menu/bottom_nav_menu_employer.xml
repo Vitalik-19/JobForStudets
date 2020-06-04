@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/list_advert" />
     <item
-        android:id="@+id/profileEmployerFragment"
+        android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile_black_24dp"
         android:title="@string/title_profile" />
 </menu>

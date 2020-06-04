@@ -2,13 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="profileViewModel"
+            type="com.example.jobforstudent.ui.profile.ProfileViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp">
 
         <LinearLayout
-            android:id="@+id/profile_fragment_login_profile"
+            android:id="@+id/profile_fragment_exit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -19,19 +26,15 @@
                 android:tint="@color/colorAccent"
                 app:srcCompat="@drawable/ic_profile_black_24dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="Вихід"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Вхід"
-                    android:textSize="24sp" />
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </layout>
