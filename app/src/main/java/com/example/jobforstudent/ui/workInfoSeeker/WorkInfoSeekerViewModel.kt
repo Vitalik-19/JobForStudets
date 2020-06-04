@@ -4,10 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.jobforstudent.database.Advert
-import com.example.jobforstudent.database.AdvertDatabaseDao
-import com.example.jobforstudent.database.AdvertsSeekers
-import com.example.jobforstudent.database.SessionSeeker
+import com.example.jobforstudent.database.*
 import kotlinx.coroutines.*
 
 class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Application) : AndroidViewModel(application) {
@@ -40,12 +37,27 @@ class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Appl
 
     private fun onCreateAdvertsSeekers() {
         uiScope.launch {
-
             val advertsSeekers = AdvertsSeekers(
                     sessionSeeker.value!!,
                     advert.value!!.advertId
             )
-            insertAdvertsSeekers(advertsSeekers)
+            getSeekerWithAdvertsFromDatabase(sessionSeeker.value!!)?.advertList?.let {
+                when (it.size) {
+                    0 -> insertAdvertsSeekers(advertsSeekers)
+                    else -> loop@ for (advert1 in it) {
+                        when (advert1.advertId) {
+                            advert.value!!.advertId -> {
+                                deleteAdvertsSeekers(advertsSeekers)
+                                break@loop
+                            }
+                            else -> {
+                                insertAdvertsSeekers(advertsSeekers)
+                                break@loop
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -54,6 +66,28 @@ class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Appl
             val advert = database.get(id)
 
             advert
+        }
+    }
+
+    private suspend fun getSeekerFromDatabase(key: Long): Seeker? {
+        return withContext(Dispatchers.IO) {
+            val seeker = database.getSeekerById(key)
+            seeker
+        }
+    }
+
+    private suspend fun getAdvertWithSeekersFromDatabase(key: Long): AdvertWithSeekers? {
+        return withContext(Dispatchers.IO) {
+            val advert = database.getAdvertWithSeekers(key)
+
+            advert
+        }
+    }
+
+    private suspend fun getSeekerWithAdvertsFromDatabase(key: Long): SeekerWithAdverts? {
+        return withContext(Dispatchers.IO) {
+            val seeker = database.getSeekerWithAdverts(key)
+            seeker
         }
     }
 
@@ -83,6 +117,12 @@ class WorkInfoSeekerViewModel(val database: AdvertDatabaseDao, application: Appl
     private suspend fun insertAdvertsSeekers(advertsSeekers: AdvertsSeekers) {
         return withContext(Dispatchers.IO) {
             database.insertAdvertsSeekers(advertsSeekers)
+        }
+    }
+
+    private suspend fun deleteAdvertsSeekers(advertsSeekers: AdvertsSeekers) {
+        return withContext(Dispatchers.IO) {
+            database.deleteAdvertsSeekers(advertsSeekers)
         }
     }
 }

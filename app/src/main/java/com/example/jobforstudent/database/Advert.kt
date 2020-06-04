@@ -13,7 +13,7 @@ data class Advert(
         var location: String = "Location",
         var description: String = "Description",
         var phone: String = "",
-        var observersId: Long = 0,
+        var observersId: Long = 0L,
         var ownerId: Long = 0L
 )
 

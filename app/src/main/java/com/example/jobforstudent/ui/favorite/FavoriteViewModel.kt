@@ -28,11 +28,7 @@ class FavoriteViewModel(val database: UserDatabaseDao, application: Application)
     private val sessionSeeker: LiveData<Long>
         get() = _sessionSeeker
 
-    init {
-        initializeCreateAdvert()
-    }
-
-    private fun initializeCreateAdvert() {
+    fun initializeCreateAdvert() {
         uiScope.launch {
             _sessionSeeker.value = getSessionSeekerFromDatabase()?.seekerId
             _favoriteAdverts.value = sessionSeeker.value?.let { getCreateAdvertFromDatabase(it)?.advertList }
