@@ -39,10 +39,10 @@ class EmployerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.bottom_nav_fragment_employer)
         navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
-            if (nd.id == R.id.advertEmployerFragment || nd.id == R.id.profileFragment) {
-                binding.navViewEmployer.visibility = View.VISIBLE
-            } else {
-                binding.navViewEmployer.visibility = View.GONE
+            when (nd.id) {
+                R.id.advertEmployerFragment -> binding.navViewEmployer.visibility = View.VISIBLE
+                R.id.profileFragment -> binding.navViewEmployer.visibility = View.VISIBLE
+                else -> binding.navViewEmployer.visibility = View.GONE
             }
         }
         binding.navViewEmployer.setupWithNavController(navController)

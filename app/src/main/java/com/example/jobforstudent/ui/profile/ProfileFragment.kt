@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import androidx.navigation.get
 import com.example.jobforstudent.R
 import com.example.jobforstudent.database.AppDatabase
 import com.example.jobforstudent.databinding.ProfileFragmentBinding

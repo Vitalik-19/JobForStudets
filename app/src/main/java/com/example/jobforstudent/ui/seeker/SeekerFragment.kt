@@ -2,7 +2,6 @@ package com.example.jobforstudent.ui.seeker
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,14 +44,12 @@ class SeekerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val navController = Navigation.findNavController(requireActivity(), R.id.seekerFragment)
         binding.navViewSeeker.setupWithNavController(navController)
-        navController.addOnDestinationChangedListener { nc: NavController, nd: NavDestination, _: Bundle? ->
-            Log.i("seeker", nd.label.toString())
-            when (nd.label) {
-                "SeekerFragment" -> binding.navViewSeeker.visibility = View.VISIBLE
-                "SearchFragment" -> binding.navViewSeeker.visibility = View.VISIBLE
-                "FavoriteFragment" -> binding.navViewSeeker.visibility = View.VISIBLE
-                "NotificationsFragment" -> binding.navViewSeeker.visibility = View.VISIBLE
-                "ProfileFragment" -> binding.navViewSeeker.visibility = View.VISIBLE
+        navController.addOnDestinationChangedListener { _: NavController, nd: NavDestination, _: Bundle? ->
+            when (nd.id) {
+                R.id.searchFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.favoriteFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.notificationsFragment -> binding.navViewSeeker.visibility = View.VISIBLE
+                R.id.profileFragment -> binding.navViewSeeker.visibility = View.VISIBLE
                 else -> binding.navViewSeeker.visibility = View.GONE
             }
         }
