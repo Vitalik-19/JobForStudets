@@ -57,6 +57,9 @@ public abstract class UserDatabaseDao {
     @Query("SELECT * FROM Seeker WHERE loginSeeker = :login AND password = :password")
     abstract fun getSeeker(login: String, password: String): Seeker?
 
+    @Query("SELECT * FROM Seeker WHERE seekerId = :key")
+    abstract fun getSeekerById(key: Long): Seeker?
+
     @Transaction
     @Query("SELECT * FROM Employer WHERE employerId = :key")
     abstract fun getEmployerWithAdverts(key: Long): EmployerWithAdverts?

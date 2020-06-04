@@ -29,8 +29,12 @@ public interface AdvertDatabaseDao {
     fun getCreateAdvert(): Advert?
 
     @Transaction
-    @Query("SELECT * FROM Advert")
-    fun getAdvertWithSeekers(): List<AdvertWithSeekers>
+    @Query("SELECT * FROM Advert WHERE advertId = :key")
+    fun getAdvertWithSeekers(key: Long): AdvertWithSeekers?
+
+    @Transaction
+    @Query("SELECT * FROM Seeker WHERE seekerId = :key")
+    fun getSeekerWithAdverts(key: Long): SeekerWithAdverts?
 
     @Query("SELECT * FROM SessionEmployer ORDER BY sessionId DESC LIMIT 1")
     fun getSessionEmployer(): SessionEmployer?
@@ -38,6 +42,12 @@ public interface AdvertDatabaseDao {
     @Query("SELECT * FROM SessionSeeker ORDER BY sessionId DESC LIMIT 1")
     fun getSessionSeeker(): SessionSeeker?
 
+    @Query("SELECT * FROM Seeker WHERE seekerId = :key")
+    fun getSeekerById(key: Long): Seeker?
+
     @Insert
     fun insertAdvertsSeekers(advertsSeekers: AdvertsSeekers)
+
+    @Delete
+    fun deleteAdvertsSeekers(advertsSeekers: AdvertsSeekers)
 }
